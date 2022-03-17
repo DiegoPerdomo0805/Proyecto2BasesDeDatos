@@ -87,3 +87,25 @@ create table premiados (
     foreign key (id_premio) references premios(id),
     primary key (id_titulo)
 );
+
+CREATE table anunciantes (
+	id varchar(5) primary key not null,
+    NOMBRE varchar(20) not null
+);
+
+create table anuncio (
+	id varchar(7) not null,
+	nombre varchar(20) not null,
+	id_anunciante varchar(5) not null,
+    foreign key (id_anunciante) references anunciantes(id),
+    primary key (id)
+);
+
+create table anuncio_contenido(
+	id_anuncio varchar(7) not null,
+	id_titulo varchar(6) not null,
+	foreign key (id_anuncio) references anuncio(id),
+	foreign key (id_titulo) references titulos(id),
+    primary key (id_anuncio, id_titulo)
+);
+
