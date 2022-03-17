@@ -66,4 +66,24 @@ create table titulo_director (
     primary key (id)
 );
 
+alter table titulo_actores drop column estelar2;
+alter table titulo_actores drop column estelar3;
+alter table titulo_actores rename column estelar1 to actor;
 
+alter table titulo_details drop column genero3;
+alter table titulo_details drop column genero2;
+alter table titulo_details rename column genero1 to genero;
+
+
+CREATE table premios (
+	id varchar(3) primary key not null,
+    NOMBRE varchar(30) not null
+);
+
+create table premiados (
+	id_titulo varchar(6) not null,
+	id_premio varchar(3) not null,
+    foreign key (id_titulo) references titulos(id),
+    foreign key (id_premio) references premios(id),
+    primary key (id_titulo)
+);
