@@ -74,6 +74,7 @@ alter table titulo_details drop column genero3;
 alter table titulo_details drop column genero2;
 alter table titulo_details rename column genero1 to genero;
 
+alter table titulo_details add release_date date
 
 CREATE table premios (
 	id varchar(3) primary key not null,
