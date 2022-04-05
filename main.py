@@ -5,6 +5,7 @@ from tkinter import messagebox
 import psycopg2
 from psycopg2 import Error
 
+
 class Login:
 
    def __init__(self,root):
@@ -69,9 +70,7 @@ class Login:
 
     btn3.place(x=110,y=390)
 
-
-
-   #Inicio de sesión
+#login
    def login(self):
 
     if self.email_txt.get()=="" or self.password.get()=="":
@@ -86,6 +85,7 @@ class Login:
         cur=con.cursor()
 
         cur.execute('select * from cuenta where correo=%s and password=%s',(self.email_txt.get(),self.password.get()))
+
         row=cur.fetchone()
         if row==None:
          messagebox.showerror('Error','Invalid Username And Password',parent=self.root)
@@ -101,6 +101,7 @@ class Login:
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
    #área de registro 
+
    def Register(self):
 
     Frame_login1=Frame(self.root,bg="white")
@@ -187,6 +188,7 @@ class Login:
 
         cur.execute("select * from cuenta where correo=%s",self.entry3.get())
 
+
         row=cur.fetchone()
 
         if row!=None:
@@ -201,8 +203,7 @@ class Login:
 
         else:
 
-          cur.execute("insert into cuenta values(%s,%s,%s,%s)",(self.entry.get(),self.entry3.get(),self.entry2.get(),self.entry4.get()))
-          
+          cur.execute("insert into cuenta values(%s,%s,%s,%s)",(self.entry.get(),self.entry3.get(),self.entry2.get(),self.entry4.get()))          
           con.commit()
 
           con.close()
