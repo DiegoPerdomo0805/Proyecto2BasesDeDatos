@@ -2,7 +2,9 @@ from tkinter import *
 
 from tkinter import messagebox
 
-import pymysql
+import psycopg2
+from psycopg2 import Error
+
 
 class Login:
 
@@ -68,8 +70,7 @@ class Login:
 
     btn3.place(x=110,y=390)
 
-
-
+#login
    def login(self):
 
     if self.email_txt.get()=="" or self.password.get()=="":
@@ -79,11 +80,12 @@ class Login:
     else:
      try:
        
-        con=pymysql.connect(host='localhost',user='root',password='shivakesh2',database='pythongui')
+        con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
 
         cur=con.cursor()
 
-        cur.execute('select * from register where emailid=%s and password=%s',(self.email_txt.get(),self.password.get()))
+        cur.execute('select * from cuenta where correo=%s and password=%s',(self.email_txt.get(),self.password.get()))
+
         row=cur.fetchone()
         if row==None:
          messagebox.showerror('Error','Invalid Username And Password',parent=self.root)
@@ -97,6 +99,8 @@ class Login:
      except Exception as es:
        
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+   #área de registro 
 
    def Register(self):
 
@@ -162,6 +166,8 @@ class Login:
 
     btn3.place(x=110,y=390)
 
+
+#Resgitro de cuenta
    def register(self):
 
     if self.entry.get()==""or self.entry2.get()==""or self.entry3.get()==""or self.entry4.get()=="":
@@ -176,11 +182,12 @@ class Login:
 
        try:
 
-        con=pymysql.connect(host="localhost",user="root",password="shivakesh2",database="pythongui")
+        con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
 
         cur=con.cursor()
 
-        cur.execute("select * from register where emailid=%s",self.entry3.get())
+        cur.execute("select * from cuenta where correo=%s",self.entry3.get())
+
 
         row=cur.fetchone()
 
@@ -196,8 +203,7 @@ class Login:
 
         else:
 
-          cur.execute("insert into register values(%s,%s,%s,%s)",(self.entry.get(),self.entry3.get(),self.entry2.get(),self.entry4.get()))
-          
+          cur.execute("insert into cuenta values(%s,%s,%s,%s)",(self.entry.get(),self.entry3.get(),self.entry2.get(),self.entry4.get()))          
           con.commit()
 
           con.close()
