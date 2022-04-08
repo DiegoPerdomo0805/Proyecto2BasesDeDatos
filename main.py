@@ -468,36 +468,25 @@ class Login:
 #Search by Name
    def Player(self):
 
-    btn4=Button(Frame_login,text="Finish the content?",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    label3=Label(frame_input,text="Finish the content? Y = yes N = No",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-    btn4.place(x=90,y=340)
+    label3.place(x=30,y=195)
 
-    if self.searchInput.get()=="":
+    self.Finish=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.Finish.place(x=30,y=245,width=270,height=35)
+
+    if self.Finish.get()=="":
 
       messagebox.showerror("Error","Need to fill the search field",parent=self.root)
 
     else:
-     try:
-       
-      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
-
-      #   cur=con.cursor()
-
-      #   cur.execute('select * from cuenta where correo=%s and password=%s',(self.email_txt.get(),self.password.get()))
-
-      #   row=cur.fetchone()
-      #   if row==None:
-      #    messagebox.showerror('Error','Invalid Username And Password',parent=self.root)
-      #    self.loginclear()
-      #    self.email_txt.focus()
-      #   else:
-      #    self.appscreen()
-
-      #    con.close()
-
-     except Exception as es:
-       
-      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+       if self.Finish.get()=="Y":
+          #AQUI SETEAMOS QUE PUES NO SE TERMINO DE REPRODUCIR EL VIDEO
+          self.appscreen()
+       else:
+          #AQUI SETEAMOS QUE PUES SE TERMINO DE REPRODUCIR EL VIDEO
+          self.appscreen()
 
    def regclear(self):
 
