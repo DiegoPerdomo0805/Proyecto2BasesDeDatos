@@ -100,8 +100,7 @@ class Login:
        
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
-   #área de registro 
-
+#área de registro 
    def Register(self):
 
     Frame_login1=Frame(self.root,bg="white")
@@ -224,23 +223,281 @@ class Login:
 
     Frame_login.place(x=0,y=0,height=700,width=1366)
 
-    label1=Label(Frame_login,text="Hi! Welcome To Seek coding",font=('times new roman',32,'bold'),fg="black",bg='white')
+    label1=Label(Frame_login,text="Hi! Welcome ORANGE YOUTUBE",font=('times new roman',32,'bold'),fg="black",bg='white')
 
     label1.place(x=375,y=100)
 
-    label2=Label(Frame_login,text="Youtube Channel.If you are New to Channel",font=('times new roman',32,'bold'),fg="black",bg='white')
 
-    label2.place(x=235,y=160)
+    btn2=Button(Frame_login,text="Search by Name",command=self.searchName,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-    label3=Label(Frame_login,text="Please Subscribe,Like And Share",font=('times new roman',32,'bold'),fg="black",bg='white')
-
-    label3.place(x=340,y=220)
-
-    btn2=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
-
-    btn2.place(x=1000,y=10)
+    btn2.place(x=90,y=340)
 
 
+    btn2=Button(Frame_login,text="Search by Stellar",command=self.searchStellar,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn2.place(x=90,y=340)
+
+
+    btn3=Button(Frame_login,text="Search by Genre",command=self.searchGenre,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn3.place(x=90,y=340)
+
+
+    btn4=Button(Frame_login,text="Search by Director",command=self.searchDirector,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn4.place(x=90,y=340)
+
+
+    btn5=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn5.place(x=1000,y=10)
+
+#Search by Director
+   def searchDirector(self):
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.searchInput.place(x=30,y=245,width=270,height=35)
+
+    if self.searchInput.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+     try:
+       
+      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
+
+      # label1.place(x=75,y=20)
+
+      #    con.close()
+
+      frame_input=Frame(self.root,bg='white')
+
+      frame_input.place(x=320,y=130,height=450,width=350)
+
+      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+      label3.place(x=30,y=195)
+
+      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+      self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+
+      btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn4.place(x=90,y=340)
+
+     except Exception as es:
+       
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+#Search by Genre
+   def searchGenre(self):
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.searchInput.place(x=30,y=245,width=270,height=35)
+
+    if self.searchInput.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+     try:
+       
+      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
+
+      # label1.place(x=75,y=20)
+
+      #    con.close()
+
+      frame_input=Frame(self.root,bg='white')
+
+      frame_input.place(x=320,y=130,height=450,width=350)
+
+      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+      label3.place(x=30,y=195)
+
+      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+      self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+
+      btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn4.place(x=90,y=340)
+
+     except Exception as es:
+       
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+#Search by Stellar
+   def searchStellar(self):
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.searchInput.place(x=30,y=245,width=270,height=35)
+
+    if self.searchInput.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+     try:
+       
+      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
+
+      # label1.place(x=75,y=20)
+
+      #    con.close()
+
+      frame_input=Frame(self.root,bg='white')
+
+      frame_input.place(x=320,y=130,height=450,width=350)
+
+      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+      label3.place(x=30,y=195)
+
+      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+      self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+
+      btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn4.place(x=90,y=340)
+
+     except Exception as es:
+       
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+#Search by Name
+   def searchName(self):
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.searchInput.place(x=30,y=245,width=270,height=35)
+
+    if self.searchInput.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+     try:
+       
+      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
+
+      # label1.place(x=75,y=20)
+
+      #    con.close()
+
+      frame_input=Frame(self.root,bg='white')
+
+      frame_input.place(x=320,y=130,height=450,width=350)
+
+      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+      label3.place(x=30,y=195)
+
+      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+      self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+
+      btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn4.place(x=90,y=340)
+
+     except Exception as es:
+       
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+
+#Search by Name
+   def Player(self):
+
+    btn4=Button(Frame_login,text="Finish the content?",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn4.place(x=90,y=340)
+
+    if self.searchInput.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+     try:
+       
+      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #   cur=con.cursor()
+
+      #   cur.execute('select * from cuenta where correo=%s and password=%s',(self.email_txt.get(),self.password.get()))
+
+      #   row=cur.fetchone()
+      #   if row==None:
+      #    messagebox.showerror('Error','Invalid Username And Password',parent=self.root)
+      #    self.loginclear()
+      #    self.email_txt.focus()
+      #   else:
+      #    self.appscreen()
+
+      #    con.close()
+
+     except Exception as es:
+       
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
    def regclear(self):
 
