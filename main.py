@@ -465,7 +465,7 @@ class Login:
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
 
-#Search by Name
+#Search Player
    def Player(self):
 
     label3=Label(frame_input,text="Finish the content? Y = yes N = No",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
