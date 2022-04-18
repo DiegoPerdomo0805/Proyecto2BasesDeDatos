@@ -115,6 +115,29 @@ class Login:
 
     label1.place(x=45,y=20)
 
+    label6=Label(frame_input,text="TYPE OF ACCOUNT 1=Basica 2=Estandar 3=Avanzada",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label6.place(x=30,y=195)
+
+    self.Finish=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.Finish.place(x=30,y=245,width=270,height=35)
+
+    if self.Finish.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+       if self.Finish.get()=="1":
+          #AQUI ES PARA EL TIPO DE CUENTA
+          print("OPCION 1")
+       if self.Finish.get()=="2":
+          #AQUI ES PARA EL TIPO DE CUENTA
+          print("OPCION 2")
+       else:
+          #AQUI SETEAMOS QUE PUES SE TERMINO DE REPRODUCIR EL VIDEO
+          print("OPCION 3")
+
     label2=Label(frame_input2,text="E-mail",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
     label2.place(x=30,y=95)
