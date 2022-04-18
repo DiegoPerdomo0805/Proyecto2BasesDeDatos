@@ -110,3 +110,57 @@ create table anuncio_contenido(
     primary key (id_anuncio, id_titulo)
 );
 
+create table cuenta (
+cuenta_id INT GENERATED ALWAYS AS identity not null,
+correo varchar(40) not null,
+pssword varchar(50) not null,
+nivel_cuenta int not null,
+primary key (cuenta_id)
+);
+
+create table perfiles(
+cuenta int not null,
+perfil_id varchar(11) not null,
+perfil varchar(10) not null,
+active boolean not null,
+foreign key (cuenta) references cuenta(cuenta_id),
+primary key (perfil_id)
+);
+
+create table perfiles(
+cuenta int not null,
+perfil_id varchar(11) not null,
+perfil varchar(10) not null,
+active boolean not null,
+foreign key (cuenta) references cuenta(cuenta_id),
+primary key (perfil_id)
+);
+
+create table favoritos(
+perfil varchar(11) not null,
+id_titulo varchar(6) not null,
+foreign key (perfil) references perfiles(perfil_id)
+);
+
+create table viendo(
+perfil varchar(11) not null,
+id_titulo varchar(6) not null,
+foreign key (perfil) references perfiles(perfil_id)
+);
+
+create table watch_again(
+perfil varchar(11) not null,
+id_titulo varchar(6) not null,
+times_watched int not null,
+date_watched date not null,
+foreign key (perfil) references perfiles(perfil_id)
+);
+
+create table recomendados(
+perfil varchar(11) not null,
+id_titulo varchar(6) not null,
+foreign key (perfil) references perfiles(perfil_id)
+);
+
+
+

@@ -115,7 +115,7 @@ class Login:
 
     label1.place(x=45,y=20)
 
-    label2=Label(frame_input2,text="Username",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+    label2=Label(frame_input2,text="E-mail",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
     label2.place(x=30,y=95)
 
@@ -142,6 +142,8 @@ class Login:
     self.entry3=Entry(frame_input2,font=("times new roman",15,"bold"),bg='lightgray')
 
     self.entry3.place(x=330,y=145,width=270,height=35)
+
+     
 
     label5=Label(frame_input2,text="Confirm Password",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 

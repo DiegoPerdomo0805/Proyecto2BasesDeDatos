@@ -1,7 +1,7 @@
 from hashlib import md5
 
 #funcion de encriptado usando md5
-def encryption(psswrd):
+def encryption(psswrd) -> String:
     cntr = psswrd
     c_e = md5()
     c_e.update(cntr.encode())
