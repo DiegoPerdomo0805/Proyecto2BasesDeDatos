@@ -80,10 +80,11 @@ class Login:
     else:
      try:
        
-        con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+        #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="Proyecto2")
+        con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
 
         cur=con.cursor()
-
+        
         cur.execute('select * from cuenta where correo=%s and pssword=%s',(self.email_txt.get(),self.password.get()))
 
         row=cur.fetchone()
@@ -206,7 +207,8 @@ class Login:
 
        try:
 
-        con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+        #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+        con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
 
         cur=con.cursor()
 
@@ -252,19 +254,17 @@ class Login:
 
     label1.place(x=375,y=100)
 
+    btn1=Button(Frame_login,text="Search by Name",command=self.searchMi,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-    btn2=Button(Frame_login,text="Search by Name",command=self.searchMi,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn1.place(x=90,y=340)
 
-    btn2.place(x=90,y=340)
+    btn2=Button(Frame_login,text="Search by Genre",command=self.searchGenre,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
+    btn2.place(x=90,y=420)
 
-    btn3=Button(Frame_login,text="Search by Genre",command=self.searchGenre,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn3=Button(Frame_login,text="ShowList",command=self.ShowList,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-    btn3.place(x=90,y=340)
-
-    btn7=Button(Frame_login,text="ShowList",command=self.ShowList,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
-
-    btn7.place(x=1000,y=10)
+    btn3.place(x=90,y=500)
 
     isadm = False
     #MOMO: Aqui en la variable tenes que poner el query para distinguir si es admin o no
@@ -274,14 +274,16 @@ class Login:
     else:
       isadm = False
 
+    isadm = True
+
     if(isadm == True):
-      btn8=Button(Frame_login,text="Upgrade",command=self.upgrade,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+      btn4=Button(Frame_login,text="Upgrade",command=self.upgrade,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-      btn8.place(x=1000,y=10)
+      btn4.place(x=90,y=580)
     else:
-      btn9=Button(Frame_login,text="Stadistics",command=self.stad,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+      btn4=Button(Frame_login,text="Stadistics",command=self.stad,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-      btn9.place(x=1000,y=10)
+      btn4.place(x=90,y=580)
 
     btn5=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
@@ -289,19 +291,18 @@ class Login:
 
 #ShowList
    def ShowList(self):
+    Frame_login=Frame(self.root,bg="white")
 
-    frame_input=Frame(self.root,bg='white')
+    Frame_login.place(x=0,y=0,height=700,width=1366)
 
-    frame_input.place(x=320,y=130,height=450,width=350)
+    btn2=Button(Frame_login,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=20,height=1)
 
-    label3=Label(frame_input,text="CONTENTS",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
-
-    label3.place(x=30,y=195)
-
+    btn2.place(x=400,y=340)
     
     try:
          
       #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+      con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
 
       #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
       #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
@@ -315,7 +316,7 @@ class Login:
 
       for x in con:
 
-         label4=Label(frame_input,text=con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+         label4=Label(Frame_login,text=con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
          label4.place(x=30,y=195)
 
@@ -329,17 +330,17 @@ class Login:
 
     Frame_login.place(x=0,y=0,height=700,width=1366)
 
-    frame_input=Frame(self.root,bg='white')
+    label1=Label(Frame_login,text="Want to upgrade?",font=('times new roman',32,'bold'),fg="black",bg='white')
 
-    frame_input.place(x=320,y=130,height=450,width=350)
+    label1.place(x=375,y=100)
 
-    label3=Label(frame_input,text="Want to upgrade to youtube orange mega goldy yes daddy?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+    btn1=Button(Frame_login,text="UPGRADE DADDY?",command=self.upgradeMake,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=20,height=1)
 
-    label3.place(x=30,y=195)
+    btn1.place(x=100,y=340)
 
-    btn9=Button(Frame_login,text="UPGRADE DADDY?",command=self.upgradeMake,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn2=Button(Frame_login,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=20,height=1)
 
-    btn9.place(x=1000,y=10)
+    btn2.place(x=400,y=340)
 
 #ShowList
    def upgradeMake(self):
@@ -350,9 +351,9 @@ class Login:
 
     #MOMO: Meter el query para hacer el upgrade
 
-    btn9=Button(Frame_login,text="CLICK TO COMPLETE",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn9=Button(Frame_login,text="CLICK TO COMPLETE",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=20,height=1)
 
-    btn9.place(x=1000,y=10)
+    btn9.place(x=150,y=340)
 
 
 #ShowList
@@ -393,17 +394,25 @@ class Login:
 
     self.search_txt.place(x=30,y=145,width=270,height=35)
 
-    btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchMiInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchGenreInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-    btn1.place(x=1000,y=10)
+    btn1.place(x=90,y=340)
+
+    btn2=Button(Frame_login,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn2.place(x=1000,y=10)
 
 #Search by director, actor y nombre de título AQUI PROCESAMOS LA INFO Y MOTRAMOS CONTENIDO
    def searchMiInfo(self): 
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
     try:
 
        #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
       
       #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+      con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
 
       #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
       #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
@@ -414,13 +423,17 @@ class Login:
 
       label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-      label3.place(x=30,y=195)
+      label3.place(x=30,y=50)
 
       self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
-      self.contentNumber.place(x=30,y=245,width=270,height=35)
+      self.contentNumber.place(x=30,y=100,width=270,height=35)
 
       con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      btn9=Button(Frame_login,text="GO BACK",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn9.place(x=1000,y=10)
 
       for x in con:
          #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
@@ -431,7 +444,7 @@ class Login:
 
       btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-      btn4.place(x=90,y=340)
+      btn4.place(x=1000,y=50)
 
     except Exception as es:
       
@@ -457,15 +470,23 @@ class Login:
 
     btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchGenreInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-    btn1.place(x=1000,y=10)
+    btn1.place(x=90,y=340)
+
+    btn2=Button(Frame_login,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn2.place(x=1000,y=10)
 
 #Search by Genre AQUI PROCESAMOS LA INFO Y MOTRAMOS CONTENIDO
    def searchGenreInfo(self): 
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
     try:
 
-       #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
+      #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
       
       #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+      con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
 
       #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
       #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
@@ -476,13 +497,17 @@ class Login:
 
       label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-      label3.place(x=30,y=195)
+      label3.place(x=30,y=50)
 
       self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
-      self.contentNumber.place(x=30,y=245,width=270,height=35)
+      self.contentNumber.place(x=30,y=100,width=270,height=35)
 
       con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      btn9=Button(Frame_login,text="GO BACK",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn9.place(x=1000,y=10)
 
       for x in con:
          #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
@@ -493,7 +518,7 @@ class Login:
 
       btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-      btn4.place(x=90,y=340)
+      btn4.place(x=1000,y=50)
 
     except Exception as es:
       
@@ -512,17 +537,13 @@ class Login:
 
     self.Finish.place(x=30,y=245,width=270,height=35)
 
-    if self.Finish.get()=="":
-
-      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
-
+    
+    if self.Finish.get()=="Y":
+      #AQUI SETEAMOS QUE PUES NO SE TERMINO DE REPRODUCIR EL VIDEO
+      self.appscreen()
     else:
-       if self.Finish.get()=="Y":
-          #AQUI SETEAMOS QUE PUES NO SE TERMINO DE REPRODUCIR EL VIDEO
-          self.appscreen()
-       else:
-          #AQUI SETEAMOS QUE PUES SE TERMINO DE REPRODUCIR EL VIDEO
-          self.appscreen()
+      #AQUI SETEAMOS QUE PUES SE TERMINO DE REPRODUCIR EL VIDEO
+      self.appscreen()
 
    def regclear(self):
 
