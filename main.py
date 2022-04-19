@@ -115,11 +115,11 @@ class Login:
 
     label1.place(x=45,y=20)
 
-    label6=Label(frame_input,text="TYPE OF ACCOUNT 1=Basica 2=Estandar 3=Avanzada",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+    label6=Label(frame_input2,text="TYPE OF ACCOUNT 1=Basica 2=Estandar 3=Avanzada",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
     label6.place(x=30,y=195)
 
-    self.Finish=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+    self.Finish=Entry(frame_input2,font=("times new roman",15,"bold"),bg='lightgray')
 
     self.Finish.place(x=30,y=245,width=270,height=35)
 
@@ -427,7 +427,7 @@ class Login:
       label4.place(x=30,y=195)
 
 
-    btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
     btn4.place(x=90,y=340)
 
@@ -502,6 +502,8 @@ class Login:
 
 #Search Player
    def Player(self):
+          
+    frame_input=Frame(self.root,bg="white")
 
     label3=Label(frame_input,text="Finish the content? Y = yes N = No",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
