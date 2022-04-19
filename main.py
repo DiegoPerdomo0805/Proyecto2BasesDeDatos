@@ -389,86 +389,24 @@ class Login:
 
     label3.place(x=30,y=195)
 
-    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+    self.search_txt=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
-    self.searchInput.place(x=30,y=245,width=270,height=35)
+    self.search_txt.place(x=30,y=145,width=270,height=35)
 
-    
-   try:
+    btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchMiInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn1.place(x=1000,y=10)
+
+#Search by director, actor y nombre de título AQUI PROCESAMOS LA INFO Y MOTRAMOS CONTENIDO
+   def searchMiInfo(self): 
+    try:
+
+       #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
       
-    con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
-
-    #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
-    #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
-    # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
- 
-    # label1.place(x=75,y=20)
- 
-    #    con.close()
-
-    frame_input=Frame(self.root,bg='white')
-
-    frame_input.place(x=320,y=130,height=450,width=350)
-
-    label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
-
-    label3.place(x=30,y=195)
-
-    self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
-
-    self.contentNumber.place(x=30,y=245,width=270,height=35)
-
-    con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
-
-    for x in con:
-      #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
-      label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
-
-      label4.place(x=30,y=195)
-
-
-    btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
-
-    btn4.place(x=90,y=340)
-
-   except Exception as es:
-      
-    messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
-
-#Search by Genre
-   def searchGenre(self):
-    Frame_login=Frame(self.root,bg="white")
-
-    Frame_login.place(x=0,y=0,height=700,width=1366)
-
-    frame_input=Frame(self.root,bg='white')
-
-    frame_input.place(x=320,y=130,height=450,width=350)
-
-    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
-
-    label3.place(x=30,y=195)
-
-    self.searchInput=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
-
-    self.searchInput.place(x=30,y=245,width=270,height=35)
-
-    if self.searchInput.get()=="":
-
-      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
-
-    else:
-     try:
-       
-      con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+      #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
 
       #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
       #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
-      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
-
-      # label1.place(x=75,y=20)
-
-      #    con.close()
 
       frame_input=Frame(self.root,bg='white')
 
@@ -491,14 +429,75 @@ class Login:
          label4.place(x=30,y=195)
 
 
-      btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+      btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
       btn4.place(x=90,y=340)
 
-     except Exception as es:
-       
+    except Exception as es:
+      
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
+#Search by Genre
+   def searchGenre(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    self.search_txt=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.search_txt.place(x=30,y=145,width=270,height=35)
+
+    btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchGenreInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn1.place(x=1000,y=10)
+
+#Search by Genre AQUI PROCESAMOS LA INFO Y MOTRAMOS CONTENIDO
+   def searchGenreInfo(self): 
+    try:
+
+       #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
+      
+      #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+
+      frame_input=Frame(self.root,bg='white')
+
+      frame_input.place(x=320,y=130,height=450,width=350)
+
+      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+      label3.place(x=30,y=195)
+
+      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+      self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
+
+
+      btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn4.place(x=90,y=340)
+
+    except Exception as es:
+      
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
 #Search Player
    def Player(self):
