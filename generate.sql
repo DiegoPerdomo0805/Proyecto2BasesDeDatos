@@ -162,5 +162,17 @@ id_titulo varchar(6) not null,
 foreign key (perfil) references perfiles(perfil_id)
 );
 
+alter table titulo_actores drop constraint titulo_actores_pkey
+
+alter table titulo_details drop constraint titulo_details_pkey
+
+alter table titulo_director drop constraint titulo_director_pkey
 
 
+alter table titulo_actores add constraint titulo_actores_pkey PRIMARY KEY (id, actor)
+
+alter table titulo_details add constraint titulo_details_pkey PRIMARY KEY (id, genero)
+
+alter table titulo_director add constraint titulo_director_pkey PRIMARY KEY (id, director)
+
+alter table premiados add column estado varchar(1)
