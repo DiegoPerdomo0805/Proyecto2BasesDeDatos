@@ -84,7 +84,7 @@ class Login:
 
         cur=con.cursor()
 
-        cur.execute('select * from cuenta where correo=%s and password=%s',(self.email_txt.get(),self.password.get()))
+        cur.execute('select * from cuenta where correo=%s and pssword=%s',(self.email_txt.get(),self.password.get()))
 
         row=cur.fetchone()
         if row==None:

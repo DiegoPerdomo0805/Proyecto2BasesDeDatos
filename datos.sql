@@ -310,3 +310,8 @@ VALUES ('67875546','CNM234');
 
 INSERT INTO recomendados (perfil, id_titulo) 
 VALUES ('55785678','CNM321');
+
+
+INSERT INTO titulos (id, nombre, tipo) VALUES ('CNM909','Game Of Thrones','S');
+INSERT INTO series (id, temporadas, episodios) VALUES ('CNM909',8, 73);
+insert into titulo_actores (id, actor) values ('CNM909', '178')
