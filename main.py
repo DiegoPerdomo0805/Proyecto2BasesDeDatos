@@ -115,6 +115,29 @@ class Login:
 
     label1.place(x=45,y=20)
 
+    label6=Label(frame_input,text="TYPE OF ACCOUNT 1=Basica 2=Estandar 3=Avanzada",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label6.place(x=30,y=195)
+
+    self.Finish=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.Finish.place(x=30,y=245,width=270,height=35)
+
+    if self.Finish.get()=="":
+
+      messagebox.showerror("Error","Need to fill the search field",parent=self.root)
+
+    else:
+       if self.Finish.get()=="1":
+          #AQUI ES PARA EL TIPO DE CUENTA
+          print("OPCION 1")
+       if self.Finish.get()=="2":
+          #AQUI ES PARA EL TIPO DE CUENTA
+          print("OPCION 2")
+       else:
+          #AQUI SETEAMOS QUE PUES SE TERMINO DE REPRODUCIR EL VIDEO
+          print("OPCION 3")
+
     label2=Label(frame_input2,text="E-mail",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
     label2.place(x=30,y=95)
@@ -249,13 +272,124 @@ class Login:
 
     btn4.place(x=90,y=340)
 
+    btn7=Button(Frame_login,text="ShowList",command=self.ShowList,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn7.place(x=1000,y=10)
+
+    isadm = False
+    #MOMO: Aqui en la variable tenes que poner el query para distinguir si es admin o no
+    queryAn = "INSERTE EL QUERY PARA LA RESPUESTA"
+    if(queryAn == ''):
+      isadm = True
+    else:
+      isadm = False
+
+    if(isadm == True):
+      btn8=Button(Frame_login,text="Upgrade",command=self.upgrade,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn8.place(x=1000,y=10)
+    else:
+      btn9=Button(Frame_login,text="Stadistics",command=self.stad,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+      btn9.place(x=1000,y=10)
 
     btn5=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
     btn5.place(x=1000,y=10)
 
+#ShowList
+   def ShowList(self):
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="CONTENTS",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    
+    try:
+         
+      #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
+
+      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
+      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+      # label1=Label(frame_input,text="TITULOS ENCONTRADOS!",font=('impact',32,'bold'), fg="black",bg='white')
+
+      # label1.place(x=75,y=20)
+
+      #    con.close()
+
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+
+         label4=Label(frame_input,text=con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
+
+    except Exception as es:
+         
+      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+#ShowList
+   def upgrade(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="Want to upgrade to youtube orange mega goldy yes daddy?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    btn9=Button(Frame_login,text="UPGRADE DADDY?",command=self.upgradeMake,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn9.place(x=1000,y=10)
+
+#ShowList
+   def upgradeMake(self):
+
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
+
+    #MOMO: Meter el query para hacer el upgrade
+
+    btn9=Button(Frame_login,text="CLICK TO COMPLETE",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn9.place(x=1000,y=10)
+
+
+#ShowList
+   def stad(self):
+
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
+
+    frame_input=Frame(self.root,bg='white')
+
+    frame_input.place(x=320,y=130,height=450,width=350)
+
+    label3=Label(frame_input,text="CONTENTS",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+    label3.place(x=30,y=195)
+
+    btn9=Button(Frame_login,text="GO BACK",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn9.place(x=1000,y=10)
+
+
 #Search by Director
    def searchDirector(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
 
     frame_input=Frame(self.root,bg='white')
 
@@ -297,6 +431,14 @@ class Login:
       self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
       self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
 
 
       btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
@@ -309,6 +451,9 @@ class Login:
 
 #Search by Genre
    def searchGenre(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
 
     frame_input=Frame(self.root,bg='white')
 
@@ -350,6 +495,14 @@ class Login:
       self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
       self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
 
 
       btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
@@ -362,6 +515,9 @@ class Login:
 
 #Search by Stellar
    def searchStellar(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
 
     frame_input=Frame(self.root,bg='white')
 
@@ -403,6 +559,14 @@ class Login:
       self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
       self.contentNumber.place(x=30,y=245,width=270,height=35)
+
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
 
 
       btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
@@ -415,6 +579,9 @@ class Login:
 
 #Search by Name
    def searchName(self):
+    Frame_login=Frame(self.root,bg="white")
+
+    Frame_login.place(x=0,y=0,height=700,width=1366)
 
     frame_input=Frame(self.root,bg='white')
 
@@ -457,6 +624,14 @@ class Login:
 
       self.contentNumber.place(x=30,y=245,width=270,height=35)
 
+      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+      for x in con:
+         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+
+         label4.place(x=30,y=195)
+
 
       btn4=Button(Frame_login,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
@@ -465,7 +640,6 @@ class Login:
      except Exception as es:
        
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
-
 
 #Search Player
    def Player(self):
