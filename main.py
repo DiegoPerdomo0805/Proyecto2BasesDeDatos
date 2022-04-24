@@ -76,6 +76,7 @@ def menu():
             userDataInt = int(userData)
             if(userData == 1):
                print("Busqueda")
+               busqueda.busqueda()
 
             elif(userData == 2):
                print("Ver favoritos")
