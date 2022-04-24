@@ -5,6 +5,8 @@ from tkinter import messagebox
 import psycopg2
 from psycopg2 import Error
 
+# from modules import databaseModule, utils, VideoPlayerModule
+import conexion
 
 class Login:
 
@@ -41,8 +43,6 @@ class Login:
     self.email_txt=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
     self.email_txt.place(x=30,y=145,width=270,height=35)
-
-    
 
     label3=Label(frame_input,text="Password",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
@@ -244,6 +244,32 @@ class Login:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    def appscreen(self):
 
     Frame_login=Frame(self.root,bg="white")
@@ -254,13 +280,9 @@ class Login:
 
     label1.place(x=375,y=100)
 
-    btn1=Button(Frame_login,text="Search by Name",command=self.searchMi,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    btn1=Button(Frame_login,text="Search",command=self.searchMi,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
     btn1.place(x=90,y=340)
-
-    btn2=Button(Frame_login,text="Search by Genre",command=self.searchGenre,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
-
-    btn2.place(x=90,y=420)
 
     btn3=Button(Frame_login,text="ShowList",command=self.ShowList,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
@@ -274,7 +296,7 @@ class Login:
     else:
       isadm = False
 
-    isadm = True
+    isadm = False
 
     if(isadm == True):
       btn4=Button(Frame_login,text="Upgrade",command=self.upgrade,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
@@ -288,6 +310,33 @@ class Login:
     btn5=Button(Frame_login,text="Logout",command=self.loginform,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
     btn5.place(x=1000,y=10)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #ShowList
    def ShowList(self):
@@ -324,7 +373,33 @@ class Login:
          
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
 
-#ShowList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#upgrade
    def upgrade(self):
     Frame_login=Frame(self.root,bg="white")
 
@@ -342,7 +417,7 @@ class Login:
 
     btn2.place(x=400,y=340)
 
-#ShowList
+#upgrade make
    def upgradeMake(self):
 
     Frame_login=Frame(self.root,bg="white")
@@ -356,7 +431,32 @@ class Login:
     btn9.place(x=150,y=340)
 
 
-#ShowList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#stadisticas
    def stad(self):
 
     Frame_login=Frame(self.root,bg="white")
@@ -376,29 +476,67 @@ class Login:
     btn9.place(x=1000,y=10)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Search by director, actor y nombre de título
    def searchMi(self):
-    Frame_login=Frame(self.root,bg="white")
-
-    Frame_login.place(x=0,y=0,height=700,width=1366)
 
     frame_input=Frame(self.root,bg='white')
 
-    frame_input.place(x=320,y=130,height=450,width=350)
+    frame_input.place(x=0,y=0,height=700,width=1366)
 
     label3=Label(frame_input,text="Search",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-    label3.place(x=30,y=195)
+    label3.place(x=30,y=30)
+
+    label3=Label(frame_input,text="1.estelares\n2.director\n3.categoria\n4.genero\n5.premios\n6.estreno\n7.nombre",font=("times new roman",10),fg='black',bg='white')
+
+    label3.place(x=30,y=60)
+
+    label3=Label(frame_input,text="INSERTE UNA OPCION PARA BUSCAR",font=("Goudy old style",13,"bold"),fg='black',bg='white')
+
+    label3.place(x=30,y=200)
 
     self.search_txt=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
 
-    self.search_txt.place(x=30,y=145,width=270,height=35)
+    self.search_txt.place(x=30,y=250,width=270,height=35)
 
-    btn1=Button(Frame_login,text="SEARCH NOW",command=self.searchGenreInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    label3=Label(frame_input,text="INSERTE LO QUE DESEA BUSCAR",font=("Goudy old style",13,"bold"),fg='black',bg='white')
 
-    btn1.place(x=90,y=340)
+    label3.place(x=500,y=200)
 
-    btn2=Button(Frame_login,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+    self.content_txt=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+    self.content_txt.place(x=500,y=250,width=270,height=35)
+
+    btn1=Button(frame_input,text="SEARCH NOW",command=self.searchGenreInfo,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+    btn1.place(x=550,y=10)
+
+    btn2=Button(frame_input,text="Go back",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
     btn2.place(x=1000,y=10)
 
@@ -407,48 +545,108 @@ class Login:
     Frame_login=Frame(self.root,bg="white")
 
     Frame_login.place(x=0,y=0,height=700,width=1366)
-    try:
 
-       #MOMO: USAR EL search_txt PARA LA RESPUESTA DEL SEARCH
-      
-      #con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost", port="5432", database="proyecto2")
-      con=psycopg2.connect(user="postgres", password="123", host="localhost", port="5432", database="Proyecto2")
+    frame_input=Frame(self.root,bg='white')
 
-      #AQUI TENEMOS QUE PONER JUNTO A UN NUMERO EL TITULO QUE SE ENCONTRO DE LA BUSQUEDA PARA QUE LUEGO LE PEDIMOS QUE INGRESE UN NUMERO 
-      #PARA PODER SABER QUE CONTENIDO VAMOS A REPRODUCIR
+    frame_input.place(x=320,y=130,height=450,width=350)
+    
+    if self.search_txt.get()=="":
 
-      frame_input=Frame(self.root,bg='white')
+      try:
 
-      frame_input.place(x=320,y=130,height=450,width=350)
+         if(self.search_txt.get() == '1'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
 
-      label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+         elif(self.search_txt.get() == '2'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
+            
+         elif(self.search_txt.get() == '3'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
 
-      label3.place(x=30,y=50)
+         elif(self.search_txt.get() == '4'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
 
-      self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+         elif(self.search_txt.get() == '5'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
 
-      self.contentNumber.place(x=30,y=100,width=270,height=35)
+         elif(self.search_txt.get() == '6'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
+            
+         elif(self.search_txt.get() == '7'):
+            query = ("SELECT nombre, link from contenido where nombre = %s;")
+            data = (self.content_txt.get(),)
+            resultadoQ = conexion.executeQuery(query,data,True)
 
-      con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+         for x in con:
+            #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
+            label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-      btn9=Button(Frame_login,text="GO BACK",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+            label4.place(x=30,y=195)
 
-      btn9.place(x=1000,y=10)
+         label3=Label(frame_input,text="Number of the content?",font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
 
-      for x in con:
-         #AQUI PONEMOS EL CONTENIDO Y EL NUMERO QUE LE VAMOS A ASIGNAR EN UN ARRAY
-         label4=Label(frame_input,text=x + "." + con[x],font=("Goudy old style",20,"bold"),fg='orangered',bg='white')
+         label3.place(x=30,y=50)
 
-         label4.place(x=30,y=195)
+         self.contentNumber=Entry(frame_input,font=("times new roman",15,"bold"),bg='lightgray')
+
+         self.contentNumber.place(x=30,y=100,width=270,height=35)
+
+         con = ['a','b']#MOMO: ES UN ARRAY SIMULADO, PARA QUE SE PONGA EL QUERY PARA QUE VENGA LA INFO DE LOS CONTENIDOS
+
+         btn9=Button(Frame_login,text="GO BACK",command=self.appscreen,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+         btn9.place(x=1000,y=10)
+
+         btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+         btn4.place(x=1000,y=50)
+
+      except Exception as es:
+         
+         messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+    else:
+       messagebox.showerror('Error',f'Neceistas llenar el campo')
+
+       btn2=Button(Frame_login,text="Go back",command=self.searchMi,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
+
+       btn2.place(x=1000,y=10)
 
 
-      btn4=Button(frame_input,text="See Content",command=self.Player,cursor="hand2",font=("times new roman",15),fg="white",bg="orangered",bd=0,width=15,height=1)
 
-      btn4.place(x=1000,y=50)
 
-    except Exception as es:
-      
-      messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Search by Genre
    def searchGenre(self):
@@ -523,6 +721,31 @@ class Login:
     except Exception as es:
       
       messagebox.showerror('Error',f'Error Due to : {str(es)}',parent=self.root)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Search Player
    def Player(self):
