@@ -7,7 +7,7 @@ userType = ""
 adTime = 15
 
 #funcion de encriptado usando md5
-def encryption(psswrd) -> string:
+def encryption(psswrd):
     cntr = psswrd
     c_e = md5()
     c_e.update(cntr.encode())
