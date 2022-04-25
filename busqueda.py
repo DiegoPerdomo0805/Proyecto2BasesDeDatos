@@ -10,28 +10,28 @@ def busqueda():
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                 nombre()
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                director()
 
-            elif(userData == 3):
+            elif(userDataInt == 3):
                stelar()
 
-            elif(userData == 4):
+            elif(userDataInt == 4):
                genero()
 
-            elif(userData == 5):
+            elif(userDataInt == 5):
                categoria()
 
-            elif(userData == 6):
+            elif(userDataInt == 6):
                estreno()
 
-            elif(userData == 7):
+            elif(userDataInt == 7):
                premios()
 
-            elif(userData == 8):
+            elif(userDataInt == 8):
                main.menu()
 
             else:

@@ -10,13 +10,13 @@ def favoritos():
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                 verL()
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                ver()
 
-            elif(userData == 3):
+            elif(userDataInt == 3):
                main.menu
 
             else:

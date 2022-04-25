@@ -2,28 +2,28 @@ def estadisticas():
     while(True):
 
          print("Busqueda por:")
-         print("1. Nombre \n2. Director \n3. Stelar \n4. Genero \n5. Categoria \n6. Estreno \n 7. Premios \n8. Regresar")
+         print("1. El top 10 de géneros de contenido más visto, y los minutos consumidos \n2. Cantidad de reproducciones por cada categoría, por tipo de cuenta \n3. El top 10 de los directores y actores principales de las películas que los perfiles estándar y avanzados han visto \n4. La cantidad de cuentas avanzadas que se han creado en los últimos 6 meses \n5. Para una fecha específica, ¿cuál es la hora pico donde el servicio es más utilizado? \n6. Regresar")
 
          userData = input()
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                 nombre()
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                director()
 
-            elif(userData == 3):
+            elif(userDataInt == 3):
                stelar()
 
-            elif(userData == 4):
+            elif(userDataInt == 4):
                genero()
 
-            elif(userData == 5):
+            elif(userDataInt == 5):
                categoria()
 
-            elif(userData == 6):
+            elif(userDataInt == 6):
                main.menu()
 
             else:

@@ -11,10 +11,10 @@ def player(id):
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                 videoPlayer(id)
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                 # MOMO: QUERY PARA AGREGAR EL CONTENIDO A FAVORITOS
                 # query = ("select * from titulos where id=%s;")
                 # data = (id,)
@@ -22,7 +22,7 @@ def player(id):
 
                 break
 
-            elif(userData == 3):
+            elif(userDataInt == 3):
                break
 
             else:
@@ -47,14 +47,14 @@ def videoPlayer(id):
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                 print("SI")
                 # MOMO: PARA PONER SI EL USUARIO REALMENTE TERMINO EL CONTENIDO O NO
                 # query = ("select * from titulos where id=%s;")
                 # data = (id,)
                 # resultadoQ = conexion.executeQuery(query,data,True)
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                 print("NO")
                 # MOMO: PARA PONER SI EL USUARIO REALMENTE TERMINO EL CONTENIDO O NO
                 # query = ("select * from titulos where id=%s;")
