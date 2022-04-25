@@ -1,4 +1,4 @@
-import main
+import main, utilities, conexion
 
 def estadisticas():
     while(True):
