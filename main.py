@@ -88,6 +88,7 @@ def menu():
 
             elif(userData == 3):
                print("Eliminar un contenido de favoritos")
+               fav.quitar()
 
             elif(userData == 4):
                print("Contenido con progreso")

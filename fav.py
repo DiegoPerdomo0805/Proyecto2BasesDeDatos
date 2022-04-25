@@ -29,7 +29,6 @@ def verL():
     print("\nCONTENIDO!")
 
 def ver():
-    print("\nveamos")
     print("Ingrese el nombre del contenido")
 
     userData = input()
@@ -40,4 +39,16 @@ def ver():
 
     #MOMO: aqui hay que mandarle el id para que pueda reproducir el video, el id del contenido
     player.videoPlayer(id)
+
+def quitar():
+    print("Ingrese el nombre del contenido que desea eliminar")
+
+    userData = input()
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Aqui solo vayamos eliminando las cosas de favoritos
+    
 

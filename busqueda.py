@@ -1,4 +1,4 @@
-import conexion, main
+import conexion, main, player
 
 def busqueda():
     while(True):
@@ -49,6 +49,9 @@ def nombre():
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
 
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
+
 def director():
     print("Ingrese el nombre del contenido")
 
@@ -56,7 +59,10 @@ def director():
 
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
+
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id) 
 
 def stelar():
     print("Ingrese el nombre del contenido")
@@ -67,6 +73,9 @@ def stelar():
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
 
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
+
 def genero():
     print("Ingrese el nombre del contenido")
 
@@ -74,7 +83,11 @@ def genero():
 
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
+     
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
+     
 def categoria():
     print("Ingrese el nombre del contenido")
 
@@ -83,6 +96,9 @@ def categoria():
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
+
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
 
 def estreno():
     print("Ingrese el nombre del contenido")
@@ -93,6 +109,9 @@ def estreno():
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
 
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
+
 def premios():
     print("Ingrese el nombre del contenido")
 
@@ -101,3 +120,6 @@ def premios():
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
+
+    # MOMO: aqui consigamos el id
+    # player.videoPlayer(id)
