@@ -146,3 +146,5 @@ def menu():
 
          except:
             print("El valor debe ser una de las opciones dadas")
+
+main()
