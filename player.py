@@ -1,5 +1,6 @@
 import conexion
 import pywhatkit
+import time
 
 def player(id):
     while(True):
@@ -38,6 +39,7 @@ def videoPlayer(id):
     # resultadoQ = conexion.executeQuery(query,data,True)
 
     # pywhatkit.playonyt(link)
+    # pywhatkit.playonyt()
 
     while(True):
          print("Termino el contenido? \n1. Yes \n2. No")
@@ -67,4 +69,10 @@ def videoPlayer(id):
             print("El valor debe ser una de las opciones dadas")
     
 
-    
+def anuncio():
+    now = time.time()
+    future = now + 15
+    while time.time() < future:
+        # do stuff
+        print("--------------------ANUNCIO--------------------")
+        pass
