@@ -77,19 +77,19 @@ def menu():
          try:
             userDataInt = int(userData)
             if(userDataInt == 1):
-               print("Busqueda")
+               print("Estadísticas")
                busqueda.busqueda()
 
             elif(userDataInt == 2):
-               print("Ver favoritos")
+               print("Modificacion de contenidos")
                fav.favoritos()
 
             elif(userDataInt == 3):
-               print("Eliminar un contenido de favoritos")
+               print("Modificar usuario")
                fav.quitar()
 
             elif(userDataInt == 4):
-               print("Contenido con progreso")
+               print("Modificar anunciantes")
                extra.prog()
 
             elif(userDataInt == 5):
