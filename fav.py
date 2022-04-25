@@ -1,4 +1,4 @@
-import conexion, busqueda, main
+import conexion, busqueda, main, player
 
 def favoritos():
     while(True):
@@ -30,4 +30,14 @@ def verL():
 
 def ver():
     print("\nveamos")
+    print("Ingrese el nombre del contenido")
+
+    userData = input()
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: aqui hay que mandarle el id para que pueda reproducir el video, el id del contenido
+    player.videoPlayer(id)
 
