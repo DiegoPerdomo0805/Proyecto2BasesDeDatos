@@ -7,7 +7,7 @@ userType = ""
 adTime = 15
 
 #funcion de encriptado usando md5
-def encryption(psswrd) -> String:
+def encryption(psswrd) -> string:
     cntr = psswrd
     c_e = md5()
     c_e.update(cntr.encode())
@@ -43,9 +43,17 @@ def setProfile(profile = ""):
 def getProfile():
     return userProfile
 
+def range(x, l):
+    if x > 0 and x<= l:
+        return True
+    else:
+        return False
+
+      
 def setTime(time = 15):
     global adTime
     adTime = time
 
 def getTime():
     return adTime
+

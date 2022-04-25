@@ -30,26 +30,31 @@ def logIn():
    email = input()
 
    query = ("select * from cuenta where correo=%s;")
-   data = (email)
+   data = (email,)
    resultadoQ = conexion.executeQuery(query,data,True)
 
    if(len(resultadoQ) == 0):
       print("correo invalido")
       main()
-
-   print("Ingrese la contrasena del usuario")
-   password = input()
-
-   query = ("select * from cuenta where pssword=%s;")
-   data = (password,)
-   resultadoQ = conexion.executeQuery(query,data,True)
-
-   if(len(resultadoQ) == 0):
-      print("password invalida")
    else:
-      #MOMO: aqui vamos a colocar el tipo de cuenta que es asi para tener el dato en utilities, ademas de datos de la cuenta que no sean utiles a futuro
-      # utilities.setType()
-      perfil()
+      print("Ingrese la contrasena del usuario")
+      password = input()
+
+      query = ("select * from cuenta where pssword=%s;")
+      data = (password,)
+      resultadoQ = conexion.executeQuery(query,data,True)
+
+      if(len(resultadoQ) == 0):
+         print("password invalida")
+      else:
+         #MOMO: aqui vamos a colocar el tipo de cuenta que es asi para tener el dato en utilities, ademas de datos de la cuenta que no sean utiles a futuro
+         # utilities.setType()
+         perfil()
+
+
+
+
+
 
 
 def perfil():
@@ -146,3 +151,5 @@ def menu():
 
          except:
             print("El valor debe ser una de las opciones dadas")
+
+main()
