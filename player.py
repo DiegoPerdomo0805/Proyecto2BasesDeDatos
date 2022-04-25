@@ -38,6 +38,7 @@ def videoPlayer(id):
     # resultadoQ = conexion.executeQuery(query,data,True)
 
     # pywhatkit.playonyt(link)
+    # pywhatkit.playonyt()
 
     while(True):
          print("Termino el contenido? \n1. Yes \n2. No")
