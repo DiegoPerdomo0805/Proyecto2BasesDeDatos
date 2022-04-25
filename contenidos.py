@@ -188,4 +188,19 @@ def eliminar():
     #     print("Contenido removido exitosamente")
 
 def mostrar():
-    print("mostrar")
+    print("mostrar contenido")
+    # sql = ("SELECT * from contenido;")
+    # results = databaseModule.executeQuery(sql, (), True) 
+
+    # content = []
+    # for item in results:
+    #     contentTemp = []
+    #     contentTemp.append(str(item[1]))
+    #     contentTemp.append(str(item[2]))
+    #     contentTemp.append(str(item[3]))
+    #     contentTemp.append(str(item[4]))
+    #     contentTemp.append(str(item[5]))
+    #     content.append(contentTemp)
+
+    # print(tabulate(content, headers=['Nombre', 'Director','Fecha Estreno','Link','Categoria']))
+
