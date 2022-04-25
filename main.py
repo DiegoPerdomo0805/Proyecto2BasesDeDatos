@@ -1,4 +1,4 @@
-import conexion, busqueda, fav, utilities
+import conexion, busqueda, fav, utilities, extra
 
 def main():
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")
@@ -92,18 +92,23 @@ def menu():
 
             elif(userData == 4):
                print("Contenido con progreso")
+               extra.prog()
 
             elif(userData == 5):
                print("Contenido finalizado")
+               extra.finalizado()
 
             elif(userData == 6):
                print("Sugerencias")
+               extra.sugerencia()
 
             elif(userData == 7):
                print("Seleccionar otro perfil")
+               perfil()
 
             elif(userData == 8):
                print("Cerrar sesión")
+               main()
 
             else:
                print("El valor debe ser una de las opciones dadas")
