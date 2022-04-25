@@ -1,4 +1,5 @@
-import conexion, busqueda, fav, utilities, extra, contenidos
+import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas
+from estadisticas import estadisticas
 
 def main():
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")
@@ -77,11 +78,11 @@ def menu():
             userDataInt = int(userData)
             if(userDataInt == 1):
                print("Estadísticas")
-               contenidos.contenidos()
+               estadisticas.estadisticas()
 
             elif(userDataInt == 2):
                print("Modificacion de contenidos")
-               fav.favoritos()
+               contenidos.contenidos()
 
             elif(userDataInt == 3):
                print("Modificar usuario")

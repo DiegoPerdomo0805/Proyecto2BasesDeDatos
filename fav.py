@@ -3,7 +3,6 @@ import conexion, busqueda, main, player
 def favoritos():
     while(True):
 
-         print("Busqueda por:")
          print("1. Ver lista \n2. Ver contenido \n3. Regresar")
 
          userData = input()

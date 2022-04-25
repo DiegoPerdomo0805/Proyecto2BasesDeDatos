@@ -3,7 +3,6 @@ import main, utilities, conexion
 def contenidos():
     while(True):
 
-        print("Busqueda por:")
         print("1. Agregar contenido\n2. Modificar contenido\n3. Eliminar contenido\n4. Mostrar contenido actual\n5. Regresar")
 
         userData = input()

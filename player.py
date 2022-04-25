@@ -4,7 +4,6 @@ import pywhatkit
 def player(id):
     while(True):
 
-         print("Busqueda por:")
          print("1. Ver \n2. Agregar a favoritos \n3. Regresar")
 
          userData = input()

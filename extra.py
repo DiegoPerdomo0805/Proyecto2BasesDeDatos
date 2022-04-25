@@ -1,4 +1,4 @@
-import utilities
+import utilities, conexion
 
 def prog():
     print("Contenido en progreso")
