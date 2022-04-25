@@ -1,4 +1,4 @@
-import conexion, busqueda
+import conexion, busqueda, fav, utilities
 
 def main():
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")
@@ -47,13 +47,17 @@ def logIn():
    if(len(resultadoQ) == 0):
       print("password invalida")
    else:
+      #MOMO: aqui vamos a colocar el tipo de cuenta que es asi para tener el dato en utilities, ademas de datos de la cuenta que no sean utiles a futuro
+      # utilities.setType()
       perfil()
 
 
 def perfil():
    print("Que perfil desea seleccionar?")
 
-   #MOMO: aqui es de poner una forma de acceder a los diferentes perfiles que posee el usuario
+   #MOMO: aqui es de poner una forma de acceder a los diferentes perfiles que posee el usuario, ademas de setear el perfil
+   # utilities.setProfile()
+   # utilitie s.setSession()
 
    menu()
 
@@ -80,6 +84,7 @@ def menu():
 
             elif(userData == 2):
                print("Ver favoritos")
+               fav.favoritos()
 
             elif(userData == 3):
                print("Eliminar un contenido de favoritos")
