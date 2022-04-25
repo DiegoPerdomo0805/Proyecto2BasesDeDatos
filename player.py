@@ -42,6 +42,9 @@ def videoPlayer(id):
     # pywhatkit.playonyt()
 
     while(True):
+
+         anuncio()
+
          print("Termino el contenido? \n1. Yes \n2. No")
 
          userData = input()
