@@ -1,5 +1,5 @@
 import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas
-from estadisticas import estadisticas
+from datetime import datetime
 
 def main():
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")

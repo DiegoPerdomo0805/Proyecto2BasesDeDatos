@@ -3,7 +3,7 @@ import conexion, busqueda, main, player
 def favoritos():
     while(True):
 
-         print("1. Ver lista \n2. Ver contenido \n3. Regresar")
+         print("1. Ver lista \n2. Regresar")
 
          userData = input()
 
@@ -13,9 +13,6 @@ def favoritos():
                 verL()
 
             elif(userDataInt == 2):
-               ver()
-
-            elif(userDataInt == 3):
                main.menu
 
             else:
@@ -26,9 +23,16 @@ def favoritos():
 
 def verL():
     print("\nCONTENIDO!")
+    
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
 
-def ver():
-    print("Ingrese el nombre del contenido")
+    #MOMO: aqui vamos a imprimir todos los contenidos en favoritos
+
+    #hacer un for
+
+    print("Ingrese el numero del contenido que desea ver: ")
 
     userData = input()
 
@@ -36,7 +40,6 @@ def ver():
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
 
-    #MOMO: aqui hay que mandarle el id para que pueda reproducir el video, el id del contenido
     player.videoPlayer(id)
 
 def quitar():

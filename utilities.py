@@ -1,9 +1,10 @@
 from hashlib import md5
-import string
+import time
 
 userName = ""
 userProfile = ""
 userType = ""
+adTime = 15
 
 #funcion de encriptado usando md5
 def encryption(psswrd) -> string:
@@ -47,3 +48,12 @@ def range(x, l):
         return True
     else:
         return False
+
+      
+def setTime(time = 15):
+    global adTime
+    adTime = time
+
+def getTime():
+    return adTime
+
