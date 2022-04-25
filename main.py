@@ -66,7 +66,43 @@ def menu():
    admin = False
 
    if(admin == True):
-      print("Admin")
+
+      while(True):
+
+         print("Eliga una opcion")
+         print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Cerrar sesión")
+            
+         userData = input()
+
+         try:
+            userDataInt = int(userData)
+            if(userDataInt == 1):
+               print("Busqueda")
+               busqueda.busqueda()
+
+            elif(userDataInt == 2):
+               print("Ver favoritos")
+               fav.favoritos()
+
+            elif(userDataInt == 3):
+               print("Eliminar un contenido de favoritos")
+               fav.quitar()
+
+            elif(userDataInt == 4):
+               print("Contenido con progreso")
+               extra.prog()
+
+            elif(userDataInt == 5):
+               print("Contenido finalizado")
+               main()
+
+            else:
+               print("El valor debe ser una de las opciones dadas")
+
+         except:
+            print("El valor debe ser una de las opciones dadas")
+
+
    else:
       
       while(True):
@@ -78,35 +114,35 @@ def menu():
 
          try:
             userDataInt = int(userData)
-            if(userData == 1):
+            if(userDataInt == 1):
                print("Busqueda")
                busqueda.busqueda()
 
-            elif(userData == 2):
+            elif(userDataInt == 2):
                print("Ver favoritos")
                fav.favoritos()
 
-            elif(userData == 3):
+            elif(userDataInt == 3):
                print("Eliminar un contenido de favoritos")
                fav.quitar()
 
-            elif(userData == 4):
+            elif(userDataInt == 4):
                print("Contenido con progreso")
                extra.prog()
 
-            elif(userData == 5):
+            elif(userDataInt == 5):
                print("Contenido finalizado")
                extra.finalizado()
 
-            elif(userData == 6):
+            elif(userDataInt == 6):
                print("Sugerencias")
                extra.sugerencia()
 
-            elif(userData == 7):
+            elif(userDataInt == 7):
                print("Seleccionar otro perfil")
                perfil()
 
-            elif(userData == 8):
+            elif(userDataInt == 8):
                print("Cerrar sesión")
                main()
 
