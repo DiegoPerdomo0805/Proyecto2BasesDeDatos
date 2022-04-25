@@ -42,3 +42,8 @@ def setProfile(profile = ""):
 def getProfile():
     return userProfile
 
+def range(x, l):
+    if x > 0 and x<= l:
+        return True
+    else:
+        return False
