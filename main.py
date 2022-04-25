@@ -11,11 +11,10 @@ def main():
 
       try:
          userDataInt = int(userData)
-         if(userData == 1):
-            print("INICIAR SECCION")
+         if(userDataInt == 1):
             logIn()
 
-         elif(userData == 2):
+         elif(userDataInt == 2):
             print("CREAR CUENTA")
 
          else:
