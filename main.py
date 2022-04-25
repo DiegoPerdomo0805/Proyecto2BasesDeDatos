@@ -77,23 +77,18 @@ def menu():
          try:
             userDataInt = int(userData)
             if(userDataInt == 1):
-               print("Estadísticas")
                estadisticas.estadisticas()
 
             elif(userDataInt == 2):
-               print("Modificacion de contenidos")
                contenidos.contenidos()
 
             elif(userDataInt == 3):
-               print("Modificar usuario")
                fav.quitar()
 
             elif(userDataInt == 4):
-               print("Modificar anunciantes")
                extra.prog()
 
             elif(userDataInt == 5):
-               print("Contenido finalizado")
                main()
 
             else:
