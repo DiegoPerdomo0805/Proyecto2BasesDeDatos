@@ -1,3 +1,5 @@
+import main
+
 def estadisticas():
     while(True):
 
@@ -9,19 +11,19 @@ def estadisticas():
          try:
             userDataInt = int(userData)
             if(userDataInt == 1):
-                nombre()
+                opcion1()
 
             elif(userDataInt == 2):
-               director()
+               opcion2()
 
             elif(userDataInt == 3):
-               stelar()
+               opcion3()
 
             elif(userDataInt == 4):
-               genero()
+               opcion4()
 
             elif(userDataInt == 5):
-               categoria()
+               opcion5()
 
             elif(userDataInt == 6):
                main.menu()
@@ -31,3 +33,48 @@ def estadisticas():
 
          except:
             print("El valor debe ser una de las opciones dadas")
+
+def opcion1():
+    print("jaja")
+    
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+def opcion2():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+def opcion3():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+def opcion4():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+def opcion5():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True) 
+
+    #MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
