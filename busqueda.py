@@ -1,6 +1,6 @@
-import conexion, main, player
+import conexion, main, player, utilities
 from datetime import date
-from utilities import range
+from utilities import menus, range
 
 def busqueda():
     while(True):
@@ -53,8 +53,7 @@ def nombre():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True) 
 
-    # MOMO: aqui consigamos el id
-    # player.videoPlayer(id)
+    resultado(results)
 
 def director():
     print("Ingrese el nombre del director")
@@ -66,8 +65,7 @@ def director():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True)
 
-    # MOMO: aqui consigamos el id
-    # player.videoPlayer(id) 
+    resultado(results)
 
 def stelar():
     print("Ingrese el nombre de uno de los actores o actrices principales")
@@ -79,8 +77,7 @@ def stelar():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True) 
 
-    # MOMO: aqui consigamos el id
-    # player.videoPlayer(id)
+    resultado(results)
 
 def genero():
     print("Ingrese el genero del contenido")
@@ -91,8 +88,7 @@ def genero():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True)
     
-    # MOMO: aqui consigamos el id
-    # player.videoPlayer(id)
+    resultado(results)
      
 def categoria():
     print("Ingrese si se desea ver películas o series")
@@ -116,6 +112,8 @@ def categoria():
         except:
             print("opción no válida")
 
+    resultado(results)
+
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     # results = conexion.executeQuery(sql, args, True) 
@@ -124,8 +122,8 @@ def categoria():
     # player.videoPlayer(id)
 
 def estreno():
-      flag = True 
-      while(flag):
+    flag = True 
+    while(flag):
         print("Ingrese el año que el contenido se estrenó")
         try:
             userData=input()
@@ -133,17 +131,19 @@ def estreno():
             now = date.today().year
             
             if year > now or year < 1900:
-                  print("Año inválido")
+                    print("Año inválido")
             else:
-                  de = userData + "-01-01"
-                  hasta = userData + "-12-31"
-                  sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_details td where td.release_date between %s and %s;")
-                  args = (de,hasta,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE 
-                  results = conexion.executeQuery(sql, args, True) 
+                    de = userData + "-01-01"
+                    hasta = userData + "-12-31"
+                    sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_details td where td.release_date between %s and %s;")
+                    args = (de,hasta,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE 
+                    results = conexion.executeQuery(sql, args, True) 
 
-                  flag = False
+                    flag = False
         except:
             print("Formato no aceptado\n")
+    
+    resultado(results)
       
 
     
@@ -164,5 +164,11 @@ def premios():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True) 
 
-    # MOMO: aqui consigamos el id
-    # player.videoPlayer(id)
+    resultado(results)
+
+
+def resultado(results):
+
+    opcion = utilities.menus(results)
+
+    player.videoPlayer(opcion)
