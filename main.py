@@ -1,4 +1,4 @@
-import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas
+import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas, uuid
 from datetime import datetime
 
 def main():
@@ -69,6 +69,24 @@ def SignIn():
           sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%d, %s, %s);")
           args = (tier, psswrd, email)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
           results = conexion.executeQuery(sql, args, True) 
+          print("\nCree su perfil principal")
+          name = ""
+          flag = True
+          
+          while(flag):
+                 print("Ingrese el nombre de su perfil")
+                 name = input()
+                 if(name == ""):
+                     print("No puede meter nombres vacíos")
+                 else:
+                     print("Su nombre es: ", name)
+                     print("Está seguro de que desea que esta sea su nombre?")
+                     choice = utilities.menus(["Sí", "No"])
+                     if (choice == 1):
+                            flag = False
+         
+                            
+
           
 
 
