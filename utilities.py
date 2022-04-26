@@ -77,6 +77,25 @@ def menus(opciones):
             print('Porfavor ingresar solo numeros')
 
 
+def menus2(opciones):
+    """Crea menú con las opciones dadas por el usario
+    en una lista y verifica que esten en el rango especificado"""
+    for i in range(len(opciones)):
+        print(i+1, ". ",opciones[i])
+   
+    ciclo=True
+    while ciclo==True:
+        op=input('Ingrese una opcion: ')
+        try:
+            op=int(op)
+            if op <1 or op>len(opciones):
+                print('Numero invalido')
+            else:
+                ciclo=False
+                return opciones[op-1]
+        except:
+            print('Porfavor ingresar solo numeros')
+
 def contra():
     flag = True
     while(flag):

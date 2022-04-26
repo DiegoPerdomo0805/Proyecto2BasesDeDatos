@@ -169,6 +169,6 @@ def premios():
 
 def resultado(results):
 
-    opcion = utilities.menus(results)
+    opcion = utilities.menus2(results)
 
     player.videoPlayer(opcion)
