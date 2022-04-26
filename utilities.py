@@ -57,3 +57,37 @@ def setTime(time = 15):
 def getTime():
     return adTime
 
+def menus(opciones):
+    """Crea menú con las opciones dadas por el usario
+    en una lista y verifica que esten en el rango especificado"""
+    for i in range(len(opciones)):
+        print(i+1, ". ",opciones[i])
+   
+    ciclo=True
+    while ciclo==True:
+        op=input('Ingrese una opcion: ')
+        try:
+            op=int(op)
+            if op <1 or op>len(opciones):
+                print('Numero invalido')
+            else:
+                ciclo=False
+                return op
+        except:
+            print('Porfavor ingresar solo numeros')
+
+
+def contra():
+    flag = True
+    while(flag):
+        print("Ingrese su nueva contraseña")
+        contra = input()
+        if(contra == ""):
+            print("No puede meter contraseñas vacías")
+        else:
+            print("Su contrasña es: ", contra)
+            print("Está seguro de que desea que esta sea su contraseña?")
+            choice = menus(["Sí", "No"])
+            if (choice == 1):
+                return contra
+                flag = False

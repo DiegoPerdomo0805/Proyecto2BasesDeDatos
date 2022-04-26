@@ -16,7 +16,7 @@ def main():
             logIn()
 
          elif(userDataInt == 2):
-            print("CREAR CUENTA")
+            SignIn()
 
          else:
             print("El valor debe ser una de las opciones dadas")
@@ -51,7 +51,25 @@ def logIn():
          # utilities.setType()
          perfil()
 
+def SignIn(): 
+   print("Ingrese el email de su usuario")
+   email = input()
 
+   query = ("select * from cuenta where correo=%s;")
+   data = (email,)
+   resultadoQ = conexion.executeQuery(query,data,True)
+
+   if(len(resultadoQ) != 0):
+      print("correo invalido")
+      SignIn()
+   else:
+          opciones = ["Básica","Estándar", "Premium"]
+          tier = utilities.menus(opciones)
+          psswrd = utilities.contra()
+          sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%d, %s, %s);")
+          args = (tier, psswrd, email)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+          results = conexion.executeQuery(sql, args, True) 
+          
 
 
 

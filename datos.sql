@@ -315,3 +315,33 @@ VALUES ('55785678','CNM321');
 INSERT INTO titulos (id, nombre, tipo) VALUES ('CNM909','Game Of Thrones','S');
 INSERT INTO series (id, temporadas, episodios) VALUES ('CNM909',8, 73);
 insert into titulo_actores (id, actor) values ('CNM909', '178')
+
+insert into anunciantes (id, nombre) values('A0001', 'MdDonalds')
+
+insert into anunciantes (id, nombre) values('A0002', 'Burger King')
+
+insert into anunciantes (id, nombre) values('A0003', 'Coca Cola')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00001', 'McNifica doble, ahora en combo!', 'A0001')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00006', 'Nuevo McFlurry con pedazos de Reeses!', 'A0001')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00002', 'Nueva Whopper con queso mozarella!', 'A0002')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00003', 'Nuevas papas tejanas con tocino y queso!', 'A0002')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00004', 'El lado Coca-Cola de la vida', 'A0003')
+
+insert into anuncio (id, nombre, id_anunciante) values ('AN00005', 'Siempre Coca-Cola!', 'A0003')
+
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00001', 'CNM098')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00001', 'CNM123')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00001', 'CNM321')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00003', 'CNM234')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00001', 'CNM345')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00002', 'CNM456')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00005', 'CNM803')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00005', 'CNM753')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00002', 'CNM254')
+insert into anuncio_contenido (id_anuncio, id_titulo) values ('AN00003', 'CNM909')
+

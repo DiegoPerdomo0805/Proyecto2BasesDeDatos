@@ -1,6 +1,7 @@
 import conexion
 import pywhatkit
 import time
+import threading
 
 def player(id):
     while(True):
@@ -72,10 +73,14 @@ def videoPlayer(id):
             print("El valor debe ser una de las opciones dadas")
     
 
-def anuncio():
-    now = time.time()
-    future = now + 15
-    while time.time() < future:
-        # do stuff
-        print("--------------------ANUNCIO--------------------")
-        pass
+#def anuncio(ad):
+#    now = time.time()
+#    future = now + 15
+#    while time.time() < future:
+#        # do stuff
+#        print("--------------------ANUNCIO--------------------")
+#        pass
+
+def anuncio(ad):
+    threading.Timer(15.0, anuncio).start()
+    print(anuncio)
