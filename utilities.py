@@ -5,13 +5,14 @@ userName = ""
 userProfile = ""
 userType = ""
 adTime = 15
+userProfiles = 0
 
 #funcion de encriptado usando md5
 def encryption(psswrd):
     cntr = psswrd
     c_e = md5()
     c_e.update(cntr.encode())
-    return c_e.digest()
+    return c_e.hexdigest()
 
 def passlen(psswrd):
     if len(psswrd)>7 and len(psswrd)<50:
@@ -20,7 +21,7 @@ def passlen(psswrd):
         return False
 
 #SET GET DE LA INFO DE LA CUENTA
-def setSession(user = ""):
+def setSession(user=""):
     global userName
     userName = user
 
@@ -42,6 +43,15 @@ def setProfile(profile = ""):
 
 def getProfile():
     return userProfile
+
+#Profiles siendo la cantidad de perfiles que una cuenta tiene
+#Sirve para tener en cuenta la cantiddad de perfiles que uno debería tener en función de su tipo de cuenta
+def setProfiles(profiles):
+    global userProfiles
+    userProfiles = profiles
+
+def getProfiles():
+    return int(getProfiles)
 
 def range(x, l):
     if x > 0 and x<= l:
@@ -110,3 +120,28 @@ def contra():
             if (choice == 1):
                 return contra
                 flag = False
+
+def tier(nivel):
+    nivel = str(nivel)
+    swicth = {
+        "[(0,)]" : 0,
+        "[(1,)]" : 1,
+        "[(2,)]" : 2, 
+        "[(3,)]" : 3
+    }
+    return swicth[nivel]
+
+
+def cleanSingle(single):
+    single = str(single)
+    begin = 0
+    end = 0
+    acu = 0
+    for e in single:
+        if e == '(':
+            begin = acu + 1
+        elif e == ',':
+            end = acu
+        acu = acu + 1
+    return single[begin:end]
+    

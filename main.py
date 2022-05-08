@@ -1,9 +1,14 @@
+from sympy import true
 import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas, uuid
 from datetime import datetime
 
 def main():
+       
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")
 
+   utilities.setProfile("-")
+   utilities.setSession("-")
+   utilities.setType("-")
    while(True):
 
       print("1. Iniciar seccion \n2.Crear cuenta")
@@ -25,11 +30,10 @@ def main():
          print("El valor debe ser una de las opciones dadas")
 
 def logIn():
-
    print("Ingrese el email de su usuario")
    email = input()
 
-   query = ("select * from cuenta where correo=%s;")
+   query = ("SELECT * from cuenta where correo=%s;")
    data = (email,)
    resultadoQ = conexion.executeQuery(query,data,True)
 
@@ -40,22 +44,40 @@ def logIn():
       print("Ingrese la contrasena del usuario")
       password = input()
 
-      query = ("select * from cuenta where pssword=%s;")
-      data = (password,)
+      query = ("SELECT * from cuenta where pssword=%s and correo=%s;")
+      data = (utilities.encryption(password), email)
       resultadoQ = conexion.executeQuery(query,data,True)
 
       if(len(resultadoQ) == 0):
          print("password invalida")
       else:
+         query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
+         data = (email,)
+         resultadoQ = conexion.executeQuery(query,data,True)
          #MOMO: aqui vamos a colocar el tipo de cuenta que es asi para tener el dato en utilities, ademas de datos de la cuenta que no sean utiles a futuro
-         # utilities.setType()
+
+         tier = utilities.tier(resultadoQ)
+         utilities.setType(tier)
+
+         query = ("SELECT cuenta_id from cuenta where correo=%s;")
+         data = (email,)
+         resultadoQ = conexion.executeQuery(query,data,True)
+         utilities.setSession(utilities.cleanSingle(resultadoQ))
+         cuenta_id = utilities.getSession()
+         query = ("SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+         data = cuenta_id
+         resultadoQ = conexion.executeQuery(query, data, True)
+         perfiles = int(utilities.cleanSingle(resultadoQ))
+         utilities.setProfiles(perfiles)
          perfil()
+         
+         
 
 def SignIn(): 
    print("Ingrese el email de su usuario")
    email = input()
 
-   query = ("select * from cuenta where correo=%s;")
+   query = ("SELECT * from cuenta where correo=%s;")
    data = (email,)
    resultadoQ = conexion.executeQuery(query,data,True)
 
@@ -93,13 +115,16 @@ def SignIn():
 
 
 def perfil():
-   print("Que perfil desea seleccionar?")
+   if(utilities.getProfiles() == 0):
+       print("Debe crear un perfil")
+   else:
+       print("Que perfil desea seleccionar?")
 
    #MOMO: aqui es de poner una forma de acceder a los diferentes perfiles que posee el usuario, ademas de setear el perfil
    # utilities.setProfile()
    # utilitie s.setSession()
 
-   menu()
+   menu()    
 
 def menu():
    #AQUI HACER UN IF ELSE PARA SABER SI ES O NO UN ADMIN
