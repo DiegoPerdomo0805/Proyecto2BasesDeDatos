@@ -1,3 +1,4 @@
+from ctypes import util
 from sympy import true
 import conexion, busqueda, fav, utilities, extra, contenidos, estadisticas, uuid
 from datetime import datetime
@@ -5,10 +6,21 @@ from datetime import datetime
 def main():
        
    print("BIENVENIDO A YOUTUBE NARANJA 2.0")
-
-   utilities.setProfile("-")
+   #65d443ea-Gimli
+   utilities.setProfile('-')
    utilities.setSession("-")
    utilities.setType("-")
+
+   #query = ("SELECT p.perfil from perfiles p where p.cuenta = %s;")
+   #data = ("16", )
+   #resultadoQ = conexion.executeQuery(query,data,True)
+   #nombres = resultadoQ
+   #query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s;")
+   #data = ("16", )
+   #resultadoQ = conexion.executeQuery(query,data,True)
+   #ids = resultadoQ
+   #utilities.setProfile(utilities.cleanSingle(utilities.menu3(ids, nombres)))
+
    while(True):
 
       print("1. Iniciar seccion \n2.Crear cuenta")
@@ -64,11 +76,14 @@ def logIn():
          resultadoQ = conexion.executeQuery(query,data,True)
          utilities.setSession(utilities.cleanSingle(resultadoQ))
          cuenta_id = utilities.getSession()
+         
          query = ("SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
-         data = cuenta_id
+         data = (cuenta_id,)
          resultadoQ = conexion.executeQuery(query, data, True)
+         
          perfiles = int(utilities.cleanSingle(resultadoQ))
          utilities.setProfiles(perfiles)
+         print(utilities.getProfiles())
          perfil()
          
          
@@ -89,7 +104,7 @@ def SignIn():
           tier = utilities.menus(opciones)
           psswrd = utilities.contra()
           sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%d, %s, %s);")
-          args = (tier, psswrd, email)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+          args = (tier, psswrd, email, )#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
           results = conexion.executeQuery(sql, args, True) 
           print("\nCree su perfil principal")
           name = ""
@@ -109,6 +124,25 @@ def SignIn():
          
                             
           
+def createProfile():
+   unready = True
+   while(unready):
+      print("Ingrese el nombre para su perfil")
+      name = input()
+      if (name.__len__() <= 10) and (name.__len__() > 0):
+         perfil_id = utilities.createID(8)
+         account = utilities.getSession()
+         query = ("INSERT INTO perfiles (cuenta, perfil, active, perfil_id) VALUES (%s,%s,'True',%s);")
+         data = (account, name, perfil_id, )
+         conexion.executeQuery(query,data,True)
+         unready = False
+      else:
+         print("El nombre del perfil no debe pasar de los 10 caracteres.\n")
+
+
+         
+             
+
 
 
 
@@ -117,20 +151,23 @@ def SignIn():
 def perfil():
    if(utilities.getProfiles() == 0):
        print("Debe crear un perfil")
+       createProfile()
    else:
        print("Que perfil desea seleccionar?")
-
-   #MOMO: aqui es de poner una forma de acceder a los diferentes perfiles que posee el usuario, ademas de setear el perfil
-   # utilities.setProfile()
-   # utilitie s.setSession()
-
+       query = ("SELECT p.perfil from perfiles p where p.cuenta = %s;")
+       data = (utilities.getSession(), )
+       resultadoQ = conexion.executeQuery(query,data,True)
+       nombres = resultadoQ
+       query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s;")
+       data = (utilities.getSession(), )
+       resultadoQ = conexion.executeQuery(query,data,True)
+       ids = resultadoQ
+       utilities.setProfile(utilities.cleanSingle2(utilities.menu3(ids, nombres)))
    menu()    
 
 def menu():
    #AQUI HACER UN IF ELSE PARA SABER SI ES O NO UN ADMIN
-   admin = False
-
-   if(admin == True):
+   if(utilities.getType == "0"):
 
       while(True):
 

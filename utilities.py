@@ -1,9 +1,11 @@
 from hashlib import md5
 import time
+from unicodedata import name
+import uuid
 
-userName = ""
-userProfile = ""
-userType = ""
+userName = ''
+userProfile = ''
+userType = ''
 adTime = 15
 userProfiles = 0
 
@@ -51,13 +53,13 @@ def setProfiles(profiles):
     userProfiles = profiles
 
 def getProfiles():
-    return int(getProfiles)
+    return userProfiles
 
-def range(x, l):
-    if x > 0 and x<= l:
-        return True
-    else:
-        return False
+#def range(x, l):
+#    if x > 0 and x<= l:
+#        return True
+#    else:
+#        return False
 
       
 def setTime(time = 15):
@@ -70,11 +72,15 @@ def getTime():
 def menus(opciones):
     """Crea menú con las opciones dadas por el usario
     en una lista y verifica que esten en el rango especificado"""
-    for i in range(len(opciones)):
-        print(i+1, ". ",opciones[i])
+    if len(opciones) > 1:
+        length = len(opciones)
+        for i in range(length):
+            print(i+1, ". ",opciones[i])
+    else:
+        print("1. ", opciones[0])
    
     ciclo=True
-    while ciclo==True:
+    while ciclo:
         op=input('Ingrese una opcion: ')
         try:
             op=int(op)
@@ -90,7 +96,8 @@ def menus(opciones):
 def menus2(opciones):
     """Crea menú con las opciones dadas por el usario
     en una lista y verifica que esten en el rango especificado"""
-    for i in range(len(opciones)):
+    length = len(opciones)
+    for i in range(length):
         print(i+1, ". ",opciones[i])
    
     ciclo=True
@@ -144,4 +151,35 @@ def cleanSingle(single):
             end = acu
         acu = acu + 1
     return single[begin:end]
-    
+
+def cleanSingle2(single):
+    single = str(single)
+    begin = -1
+    end = 0
+    acu = 0
+    for e in single:
+        if e == "'" and begin< end:
+            begin = acu + 1
+        elif e == "'":
+            end = acu
+        acu = acu + 1
+    return single[begin:end]
+
+
+def createID(l):
+    _id = uuid.uuid1()
+    _id = str(_id)
+    return _id[0:l]
+
+
+def createArray(data):
+    arreglo = []
+    for e in data:
+        arreglo.append(e)
+    return arreglo
+
+def menu3(ids, names):
+    nombres = createArray(names)
+    codigos = createArray(ids)
+    op = menus(nombres)
+    return codigos[op-1]

@@ -81,6 +81,6 @@ def videoPlayer(id):
 #        print("--------------------ANUNCIO--------------------")
 #        pass
 
-def anuncio(ad):
+def anuncio():
     threading.Timer(15.0, anuncio).start()
     print(anuncio)

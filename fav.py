@@ -1,4 +1,4 @@
-import conexion, busqueda, main, player
+import conexion, busqueda, main, player, utilities
 
 def favoritos():
     while(True):
@@ -24,23 +24,17 @@ def favoritos():
 def verL():
     print("\nCONTENIDO!")
     
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT t.nombre from titulos t where t.id in (SELECT f.id_titulo from favoritos f where f.perfil like %s);")
+    args = (utilities.getProfile(),)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    nombres = conexion.executeQuery(sql, args, True) 
 
-    #MOMO: aqui vamos a imprimir todos los contenidos en favoritos
+    sql = ("SELECT f.id_titulo from favoritos f where f.perfil like %s;")
+    args =(utilities.getProfile(),)#RECORDA SIEMPRE PO
+    ids = conexion.executeQuery(sql, args, True) 
 
-    #hacer un for
+    choice = utilities.menu3(ids, nombres)
 
-    print("Ingrese el numero del contenido que desea ver: ")
-
-    userData = input()
-
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
-
-    player.videoPlayer(id)
+    player.videoPlayer(choice)
 
 def quitar():
     print("Ingrese el nombre del contenido que desea eliminar")
