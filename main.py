@@ -96,7 +96,7 @@ def SignIn():
    data = (email,)
    resultadoQ = conexion.executeQuery(query,data,True)
 
-   if(len(resultadoQ) != 0):
+   if(len(resultadoQ) >= 0):
       print("correo invalido")
       SignIn()
    else:
