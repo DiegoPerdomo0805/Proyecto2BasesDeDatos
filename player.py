@@ -3,14 +3,15 @@ import pywhatkit
 import time
 import threading
 
+
 def player(id):
     while(True):
 
-         print("1. Ver \n2. Agregar a favoritos \n3. Regresar")
+        print("1. Ver \n2. Agregar a favoritos \n3. Regresar")
 
-         userData = input()
+        userData = input()
 
-         try:
+        try:
             userDataInt = int(userData)
             if(userDataInt == 1):
                 videoPlayer(id)
@@ -24,13 +25,14 @@ def player(id):
                 break
 
             elif(userDataInt == 3):
-               break
+                break
 
             else:
-               print("El valor debe ser una de las opciones dadas")
+                print("El valor debe ser una de las opciones dadas")
 
-         except:
+        except:
             print("El valor debe ser una de las opciones dadas")
+
 
 def videoPlayer(id):
 
@@ -39,18 +41,20 @@ def videoPlayer(id):
     # data = (id,)
     # resultadoQ = conexion.executeQuery(query,data,True)
 
-    # pywhatkit.playonyt(link)
-    # pywhatkit.playonyt()
+    link = 'https: // youtu.be/moJiZb_48kY'
+
+    pywhatkit.playonyt(link)
+    pywhatkit.playonyt()
 
     while(True):
 
-         anuncio()
+        anuncio()
 
-         print("Termino el contenido? \n1. Yes \n2. No")
+        print("Termino el contenido? \n1. Yes \n2. No")
 
-         userData = input()
+        userData = input()
 
-         try:
+        try:
             userDataInt = int(userData)
             if(userDataInt == 1):
                 print("SI")
@@ -67,13 +71,13 @@ def videoPlayer(id):
                 # resultadoQ = conexion.executeQuery(query,data,True)
 
             else:
-               print("El valor debe ser una de las opciones dadas")
+                print("El valor debe ser una de las opciones dadas")
 
-         except:
+        except:
             print("El valor debe ser una de las opciones dadas")
-    
 
-#def anuncio(ad):
+
+# def anuncio(ad):
 #    now = time.time()
 #    future = now + 15
 #    while time.time() < future:
