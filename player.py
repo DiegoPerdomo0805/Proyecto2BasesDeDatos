@@ -1,7 +1,10 @@
-import conexion
 import pywhatkit
 import time
+from datetime import date
 import threading
+
+import conexion
+import utilities
 
 
 def player(id):
@@ -13,14 +16,16 @@ def player(id):
 
         try:
             userDataInt = int(userData)
+            perfil = utilities.getProfiles
             if(userDataInt == 1):
                 videoPlayer(id)
 
             elif(userDataInt == 2):
-                # MOMO: QUERY PARA AGREGAR EL CONTENIDO A FAVORITOS
-                # query = ("select * from titulos where id=%s;")
-                # data = (id,)
-                # resultadoQ = conexion.executeQuery(query,data,True)
+
+                query = (
+                    "insert into favoritos (perfil, id_titulo) values (%s, %s);")
+                data = (perfil, id,)
+                resultadoQ = conexion.executeQuery(query, data, True)
 
                 break
 
@@ -56,19 +61,43 @@ def videoPlayer(id):
 
         try:
             userDataInt = int(userData)
+            dateToday = date.today()
+
+            perfil = utilities.getProfiles
             if(userDataInt == 1):
                 print("SI")
-                # MOMO: PARA PONER SI EL USUARIO REALMENTE TERMINO EL CONTENIDO O NO
-                # query = ("select * from titulos where id=%s;")
-                # data = (id,)
-                # resultadoQ = conexion.executeQuery(query,data,True)
+                query = (
+                    "SELECT wa.times_watched from watch_again wa where perfil = %s and id_titulo = %s")
+                data = (perfil, id,)
+                resultadoQ = conexion.executeQuery(query, data, True)
+
+                num = resultadoQ.__len__
+
+                if(resultadoQ >= 0):
+                    query = (
+                        "UPDATE watch_again set times_watched = %s where  perfil = %s and id_titulo = %s")
+                    data = (num, perfil, id,)
+                    resultadoQ = conexion.executeQuery(query, data, True)
+                    query = (
+                        "UPDATE watch_again set date_watched = %s where  perfil = %s and id_titulo = %s")
+                    data = (num, perfil, id,)
+                    resultadoQ = conexion.executeQuery(query, data, True)
+                    query = (
+                        "DELETE from viendo  where perfil = %s and id_titulo = %s")
+                    data = (perfil, id,)
+                    resultadoQ = conexion.executeQuery(query, data, True)
+
+                else:
+                    query = (
+                        "INSERT INTO watch_again (perfil, id_titulo, times_watched, date_watched) values (%s, %s, 1, %s)")
+                    data = (perfil, id, num, dateToday)
+                    resultadoQ = conexion.executeQuery(query, data, True)
 
             elif(userDataInt == 2):
                 print("NO")
-                # MOMO: PARA PONER SI EL USUARIO REALMENTE TERMINO EL CONTENIDO O NO
-                # query = ("select * from titulos where id=%s;")
-                # data = (id,)
-                # resultadoQ = conexion.executeQuery(query,data,True)
+                query = ("INSERT INTO viendo (perfil, id_titulo) values (%s, %s);")
+                data = (perfil, id,)
+                resultadoQ = conexion.executeQuery(query, data, True)
 
             else:
                 print("El valor debe ser una de las opciones dadas")
