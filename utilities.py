@@ -96,9 +96,12 @@ def menus(opciones):
 def menus2(opciones):
     """Crea menú con las opciones dadas por el usario
     en una lista y verifica que esten en el rango especificado"""
-    length = len(opciones)
-    for i in range(length):
-        print(i+1, ". ",opciones[i])
+    if len(opciones) > 1:
+        length = len(opciones)
+        for i in range(length):
+            print(i+1, ". ",opciones[i])
+    else:
+        print("1. ", opciones[0])
    
     ciclo=True
     while ciclo==True:

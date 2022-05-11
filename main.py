@@ -11,16 +11,6 @@ def main():
    utilities.setSession("-")
    utilities.setType("-")
 
-   #query = ("SELECT p.perfil from perfiles p where p.cuenta = %s;")
-   #data = ("16", )
-   #resultadoQ = conexion.executeQuery(query,data,True)
-   #nombres = resultadoQ
-   #query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s;")
-   #data = ("16", )
-   #resultadoQ = conexion.executeQuery(query,data,True)
-   #ids = resultadoQ
-   #utilities.setProfile(utilities.cleanSingle(utilities.menu3(ids, nombres)))
-
    while(True):
 
       print("1. Iniciar seccion \n2.Crear cuenta")
@@ -66,8 +56,6 @@ def logIn():
          query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
          data = (email,)
          resultadoQ = conexion.executeQuery(query,data,True)
-         #MOMO: aqui vamos a colocar el tipo de cuenta que es asi para tener el dato en utilities, ademas de datos de la cuenta que no sean utiles a futuro
-
          tier = utilities.tier(resultadoQ)
          utilities.setType(tier)
 
@@ -83,7 +71,6 @@ def logIn():
          
          perfiles = int(utilities.cleanSingle(resultadoQ))
          utilities.setProfiles(perfiles)
-         print(utilities.getProfiles())
          perfil()
          
          
@@ -100,27 +87,30 @@ def SignIn():
       print("correo invalido")
       SignIn()
    else:
-          opciones = ["Básica","Estándar", "Premium"]
-          tier = utilities.menus(opciones)
-          psswrd = utilities.contra()
-          sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%d, %s, %s);")
-          args = (tier, psswrd, email, )#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-          results = conexion.executeQuery(sql, args, True) 
-          print("\nCree su perfil principal")
-          name = ""
-          flag = True
-          
-          while(flag):
-                 print("Ingrese el nombre de su perfil")
-                 name = input()
-                 if(name == ""):
-                     print("No puede meter nombres vacíos")
-                 else:
-                     print("Su nombre es: ", name)
-                     print("Está seguro de que desea que esta sea su nombre?")
-                     choice = utilities.menus(["Sí", "No"])
-                     if (choice == 1):
-                            flag = False
+      opciones = ["Básica","Estándar", "Premium"]
+      tier = utilities.menus(opciones)
+      psswrd = utilities.contra()
+      psswrd = utilities.encryption(psswrd)
+      sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%s, %s, %s);")
+      args = (tier, psswrd, email, )#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+      conexion.executeQuery(sql, args, False) 
+      query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
+      data = (email,)
+      resultadoQ = conexion.executeQuery(query,data,True)
+      tier = utilities.tier(resultadoQ)
+      utilities.setType(tier)
+      query = ("SELECT cuenta_id from cuenta where correo=%s;")
+      data = (email,)
+      resultadoQ = conexion.executeQuery(query,data,True)
+      utilities.setSession(utilities.cleanSingle(resultadoQ))
+      cuenta_id = utilities.getSession()
+
+      query = ("SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+      data = (cuenta_id,)
+      resultadoQ = conexion.executeQuery(query, data, True)
+      perfiles = int(utilities.cleanSingle(resultadoQ))
+      utilities.setProfiles(perfiles)
+      perfil()
          
                             
           
@@ -134,7 +124,12 @@ def createProfile():
          account = utilities.getSession()
          query = ("INSERT INTO perfiles (cuenta, perfil, active, perfil_id) VALUES (%s,%s,'True',%s);")
          data = (account, name, perfil_id, )
-         conexion.executeQuery(query,data,True)
+         conexion.executeQuery(query,data,False)
+         query = ("SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+         data = (utilities.getSession(),)
+         resultadoQ = conexion.executeQuery(query, data, True)
+         perfiles = int(utilities.cleanSingle(resultadoQ))
+         utilities.setProfiles(perfiles)
          unready = False
       else:
          print("El nombre del perfil no debe pasar de los 10 caracteres.\n")
@@ -154,11 +149,11 @@ def perfil():
        createProfile()
    else:
        print("Que perfil desea seleccionar?")
-       query = ("SELECT p.perfil from perfiles p where p.cuenta = %s;")
+       query = ("SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
        data = (utilities.getSession(), )
        resultadoQ = conexion.executeQuery(query,data,True)
        nombres = resultadoQ
-       query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s;")
+       query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
        data = (utilities.getSession(), )
        resultadoQ = conexion.executeQuery(query,data,True)
        ids = resultadoQ
@@ -167,7 +162,7 @@ def perfil():
 
 def menu():
    #AQUI HACER UN IF ELSE PARA SABER SI ES O NO UN ADMIN
-   if(utilities.getType == "0"):
+   if(utilities.getType() == 0):
 
       while(True):
 
@@ -189,7 +184,7 @@ def menu():
 
             elif(userDataInt == 4):
                extra.prog()
-
+            
             elif(userDataInt == 5):
                main()
 
@@ -205,7 +200,7 @@ def menu():
       while(True):
 
          print("Eliga una opcion")
-         print("1. Busqueda \n2. Ver favoritos \n3. Eliminar un contenido de favoritos \n4. Contenido con progreso \n5. Contenido finalizado \n6. Sugerencias \n 7. Seleccionar otro perfil \n8. Cerrar sesión")
+         print("1. Busqueda \n2. Ver favoritos \n3. Eliminar un contenido de favoritos \n4. Contenido con progreso \n5. Contenido finalizado \n6. Sugerencias \n7. Seleccionar otro perfil \n8. Crear otro perfil \n9. Cerrar sesión")
 
          userData = input()
 
@@ -240,6 +235,20 @@ def menu():
                perfil()
 
             elif(userDataInt == 8):
+               if(utilities.getType()== 1 and utilities.getProfiles() < 1):
+                  print("Crear otro perfil")
+                  createProfile()
+               elif(utilities.getType()== 2 and utilities.getProfiles() < 4):
+                  print("Crear otro perfil")
+                  createProfile()
+               elif(utilities.getType()== 3 and utilities.getProfiles() < 8):
+                  print("Crear otro perfil")
+                  createProfile()
+               else:
+                  print("Cantidad de perfiles máxima alcanzada\n")
+            
+
+            elif(userDataInt == 9):
                print("Cerrar sesión")
                main()
 

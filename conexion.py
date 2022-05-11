@@ -5,6 +5,9 @@ con=psycopg2.connect(user="postgres", password="NYARLATHOTEP", host="localhost",
 con.autocommit = True
 cursor = con.cursor()
 
+
+#En caso de reading, True
+#En caso de escritura, modificación y borrado, False
 def executeQuery(query, args, fetch = False):
     cursor.execute(query, args)
     

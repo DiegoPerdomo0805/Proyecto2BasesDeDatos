@@ -12,7 +12,7 @@ def prog():
     #MOMO: No te vayas muy lejos solo imprimamos el dato de que contenidos aun estan en progreso
 
 def finalizado():
-    print("Contenido en progreso")
+    print("Contenido finalizado")
 
     userData = input()
 
@@ -23,7 +23,7 @@ def finalizado():
     #MOMO: No te vayas muy lejos solo imprimamos el dato de que contenidos aun estan finalizados
 
 def sugerencia():
-    print("Contenido en progreso")
+    print("Contenido sugerido")
 
     userData = input()
 

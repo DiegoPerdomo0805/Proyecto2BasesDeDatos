@@ -1,3 +1,4 @@
+from scipy.fft import idst
 import conexion, main, player, utilities
 from datetime import date
 from utilities import menus, range
@@ -52,8 +53,10 @@ def nombre():
     sql = ("SELECT t.nombre from titulos t where lower(t.nombre) like lower(%s);")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True) 
-
-    resultado(results)
+    sql = ("SELECT t.id from titulos t where lower(t.nombre) like lower(%s);")
+    args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    results0 = conexion.executeQuery(sql, args, True) 
+    resultado(results0, results)
 
 def director():
     print("Ingrese el nombre del director")
@@ -64,8 +67,11 @@ def director():
     sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_director td inner join director d on td.director = d.id_director where lower(d.nombre) like  lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True)
+    sql = ("SELECT td.id from titulo_director td inner join director d on td.director = d.id_director where lower(d.nombre) like  lower(%s);")
+    args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    results0 = conexion.executeQuery(sql, args, True) 
 
-    resultado(results)
+    resultado(results0, results)
 
 def stelar():
     print("Ingrese el nombre de uno de los actores o actrices principales")
@@ -73,22 +79,28 @@ def stelar():
     userData = input()
     userData = "%" + userData + "%"
 
-    sql = ("SELECT t.nombre from titulos t where t.id in( select ta.id from titulo_actores ta inner join actor a on ta.actor = a.id_actor where lower(a.nombre) like  lower(%s));")
+    sql = ("SELECT t.nombre from titulos t where t.id in( SELECT ta.id from titulo_actores ta inner join actor a on ta.actor = a.id_actor where lower(a.nombre) like  lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT ta.id from titulo_actores ta inner join actor a on ta.actor = a.id_actor where lower(a.nombre) like  lower(%s);")
+    args = (userData,)#RECORDA SIEMPRE PONER LA COMA
+    results0 = conexion.executeQuery(sql, args, True)
 
-    resultado(results)
+    resultado(results0, results)
 
 def genero():
     print("Ingrese el genero del contenido")
 
     userData = input()
 
-    sql = ("SELECT t.nombre from titulos t where t.id in(select td.id from titulo_details td inner join generos g on td.genero = g.id_genero where lower(g.nombre) like  lower(%s));")
+    sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_details td inner join generos g on td.genero = g.id_genero where lower(g.nombre) like  lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    results = conexion.executeQuery(sql, args, True)
+    names = conexion.executeQuery(sql, args, True)
+    sql = ("SELECT td.id from titulo_details td inner join generos g on td.genero = g.id_genero where lower(g.nombre) like  lower(%s);")
+    args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    ids = conexion.executeQuery(sql, args, True)
     
-    resultado(results)
+    resultado(ids, names)
      
 def categoria():
     print("Ingrese si se desea ver películas o series")
@@ -101,18 +113,25 @@ def categoria():
             op = int(userData)
             if(range(op, 2)):
                 if op==1:
-                    sql = ("SELECT t.nombre from titulos t where t.id in(select p.id from peliculas p);")
+                    sql = ("SELECT t.nombre from titulos t where t.id in(SELECT p.id from peliculas p);")
                     args = ("")#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-                    results = conexion.executeQuery(sql, args, True) 
+                    names = conexion.executeQuery(sql, args, True) 
+                    sql = ("SELECT p.id from peliculas p;")
+                    args = ("")#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+                    ids = conexion.executeQuery(sql, args, True) 
+                    resultado(ids, names)
                 else:
-                    sql = ("SELECT t.nombre from titulos t where t.id in(select s.id from series s);")
+                    sql = ("SELECT t.nombre from titulos t where t.id in(SELECT s.id from series s);")
                     args = ("")#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-                    results = conexion.executeQuery(sql, args, True) 
+                    names = conexion.executeQuery(sql, args, True) 
+                    sql = ("SELECT p.id from series p;")
+                    args = ("")#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+                    ids = conexion.executeQuery(sql, args, True) 
+                    resultado(ids, names)
 
         except:
             print("opción no válida")
 
-    resultado(results)
 
     # sql = ("SELECT nombre, link from contenido where nombre = %s;")
     # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
@@ -137,14 +156,15 @@ def estreno():
                     hasta = userData + "-12-31"
                     sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_details td where td.release_date between %s and %s;")
                     args = (de,hasta,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE 
-                    results = conexion.executeQuery(sql, args, True) 
-
+                    names = conexion.executeQuery(sql, args, True) 
+                    sql = ("SELECT t.id from titulos t where t.id in(SELECT td.id from titulo_details td where td.release_date between %s and %s;")
+                    args = (de,hasta,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE 
+                    ids = conexion.executeQuery(sql, args, True) 
+                    resultado(ids, names)
                     flag = False
         except:
             print("Formato no aceptado\n")
-    
-    resultado(results)
-      
+          
 
     
 
@@ -162,13 +182,15 @@ def premios():
 
     sql = ("SELECT t.nombre from titulos t where t.id in( SELECT p.id_titulo from premiados p inner join premios p2 on p.id_premio = p2.id where lower(p2.nombre) like lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    results = conexion.executeQuery(sql, args, True) 
+    names = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT t.id from titulos t where t.id in( SELECT p.id_titulo from premiados p inner join premios p2 on p.id_premio = p2.id where lower(p2.nombre) like lower(%s));")
+    args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    ids = conexion.executeQuery(sql, args, True) 
+    resultado(ids, names)
 
-    resultado(results)
 
+def resultado(ids, names):
 
-def resultado(results):
-
-    opcion = utilities.menus2(results)
-
+    opcion = utilities.menu3(ids, names)
+    opcion = utilities.cleanSingle2(opcion)
     player.videoPlayer(opcion)
