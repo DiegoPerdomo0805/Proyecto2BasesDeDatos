@@ -1,35 +1,59 @@
-import utilities, conexion
+import utilities, conexion, player
 
 def prog():
     print("Contenido en progreso")
 
-    userData = input()
+    print("\nEscoja un contenido para ver de la lista de favoritos")
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT t.nombre from titulos t where t.id in (SELECT f.id_titulo from favoritos f where f.perfil like %s);")
+    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    args = (utilities.getProfile(),)
+    nombres = conexion.executeQuery(sql, args, True)
 
-    #MOMO: No te vayas muy lejos solo imprimamos el dato de que contenidos aun estan en progreso
+    sql = ("SELECT f.id_titulo from favoritos f where f.perfil like %s;")
+    args = (utilities.getProfile(),)  # RECORDA SIEMPRE PO
+    ids = conexion.executeQuery(sql, args, True)
+
+    choice = utilities.menu3(ids, nombres)
+    print(choice)
+
+    player.videoPlayer(choice)
 
 def finalizado():
     print("Contenido finalizado")
 
-    userData = input()
+    print("\nEscoja un contenido para ver de la lista de favoritos")
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT t.nombre from titulos t where t.id in (SELECT f.id_titulo from favoritos f where f.perfil like %s);")
+    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    args = (utilities.getProfile(),)
+    nombres = conexion.executeQuery(sql, args, True)
 
-    #MOMO: No te vayas muy lejos solo imprimamos el dato de que contenidos aun estan finalizados
+    sql = ("SELECT f.id_titulo from favoritos f where f.perfil like %s;")
+    args = (utilities.getProfile(),)  # RECORDA SIEMPRE PO
+    ids = conexion.executeQuery(sql, args, True)
+
+    choice = utilities.menu3(ids, nombres)
+    print(choice)
+
+    player.videoPlayer(choice)
 
 def sugerencia():
     print("Contenido sugerido")
 
-    userData = input()
+    print("\nEscoja un contenido para ver de la lista de favoritos")
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True) 
+    sql = ("SELECT t.nombre from titulos t where t.id in (SELECT f.id_titulo from favoritos f where f.perfil like %s);")
+    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    args = (utilities.getProfile(),)
+    nombres = conexion.executeQuery(sql, args, True)
 
-    #MOMO: No te vayas muy lejos solo imprimamos el dato de que contenidos sugeridos
+    sql = ("SELECT f.id_titulo from favoritos f where f.perfil like %s;")
+    args = (utilities.getProfile(),)  # RECORDA SIEMPRE PO
+    ids = conexion.executeQuery(sql, args, True)
+
+    choice = utilities.menu3(ids, nombres)
+    print(choice)
+
+    player.videoPlayer(choice)
     
