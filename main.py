@@ -9,6 +9,7 @@ import contenidos
 import estadisticas
 import uuid
 import adminOp
+import modificarAnuncio
 from datetime import datetime
 
 
@@ -20,7 +21,7 @@ def main():
     utilities.setSession("-")
     utilities.setType("-")
     buscares.nombre()
-    
+
     while(True):
 
         print("1. Iniciar seccion \n2.Crear cuenta")
@@ -155,11 +156,13 @@ def perfil():
         createProfile()
     else:
         print("Que perfil desea seleccionar?")
-        query = ("SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
+        query = (
+            "SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
         data = (utilities.getSession(), )
         resultadoQ = conexion.executeQuery(query, data, True)
         nombres = resultadoQ
-        query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
+        query = (
+            "SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
         data = (utilities.getSession(), )
         resultadoQ = conexion.executeQuery(query, data, True)
         ids = resultadoQ
@@ -220,7 +223,7 @@ def menu():
 
                     print("Eliga una opcion")
                     print(
-                        "1. Quitar perfil \n2. Agregar perfil \n3. Modificar perfil \n3. Regresar")
+                        "1. modificar anuncio \n2. modificar anunciante \n3. agregar anunciante \n3. Regresar")
 
                     while(True):
 
@@ -229,13 +232,13 @@ def menu():
                         try:
                             userDataInt = int(userData)
                             if(userDataInt == 1):
-                                adminOp.quitarPerfil()
+                                modificarAnuncio.modificarAnuncio()
 
                             elif(userDataInt == 2):
-                                adminOp.agrgarPerfil()
+                                modificarAnuncio.modificarAnunciante()
 
                             elif(userDataInt == 3):
-                                adminOp.modificarPerfil()
+                                modificarAnuncio.agregarAnunciante()
 
                             elif(userDataInt == 4):
                                 menu()
