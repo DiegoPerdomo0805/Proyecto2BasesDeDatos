@@ -6,7 +6,8 @@ import utilities
 
 
 def favoritos():
-    while(True):
+    crea = True
+    while(crea == True):
 
         print("1. Ver lista \n2. Regresar")
 
@@ -18,7 +19,7 @@ def favoritos():
                 verL()
 
             elif(userDataInt == 2):
-                main.menu()
+                crea = False
 
             else:
                 print("El valor debe ser una de las opciones dadas")

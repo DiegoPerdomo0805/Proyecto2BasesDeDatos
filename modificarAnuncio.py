@@ -1,7 +1,11 @@
-import main, utilities, conexion
+import main
+import utilities
+import conexion
+
 
 def modificarAnuncio():
-    while(True):
+    crea = True
+    while(crea == True):
 
         print("1. Agregar anunciante\n2. Agregar anuncio\n3. Modificar anunciante \n4. Regresar")
 
@@ -19,14 +23,15 @@ def modificarAnuncio():
                 modificarAnunciante()
 
             elif(userDataInt == 4):
-                main.menu()
+                crea = False
 
             else:
                 print("El valor debe ser una de las opciones dadas")
 
         except:
             print("El valor debe ser una de las opciones dadas")
-    
+
+
 def modificarAnunciante():
 
     print("1. Ingrese el nombre del anunciante a modificar")
@@ -38,12 +43,14 @@ def modificarAnunciante():
     while(True):
         sql = ("SELECT id from anunciantes a  where lower(a.nombre) like  lower(%s);")
         args = (userData,)
-        results = conexion.executeQuery(sql, args, True) 
+        results = conexion.executeQuery(sql, args, True)
 
         if(len(results) == 0):
-            print("\n\tNo se encontro anunaciante con ese nombre. Verifique que este escrito correctamente")
+            print(
+                "\n\tNo se encontro anunaciante con ese nombre. Verifique que este escrito correctamente")
         else:
-            id = utilities.cleanSingle2(utilities.menus2(utilities.createArray(results)))
+            id = utilities.cleanSingle2(
+                utilities.menus2(utilities.createArray(results)))
             break
 
     print("Ingrese el nombre modificado")
@@ -51,13 +58,14 @@ def modificarAnunciante():
     userData = input()
 
     sql = ("UPDATE anunciantes set nombre = %s where id = %s")
-    args = (userData,id,)
-    conexion.executeQuery(sql, args, False) 
+    args = (userData, id,)
+    conexion.executeQuery(sql, args, False)
 
     print("Nombre cambiado exitosamente")
 
+
 def agregarAnunciante():
-    unready  = True
+    unready = True
     while unready:
         print("Ingrese el nombre del nuevo anunciante")
         userData = input()
@@ -73,11 +81,11 @@ def agregarAnunciante():
             codigo = utilities.createID(5)
             sql = ("INSERT into anunciantes (id, nombre) values (%s, %s)")
             args = (id, userData,)
-            conexion.executeQuery(sql, args) 
+            conexion.executeQuery(sql, args)
             unready = False
     # sql = ("select id_anunciante from anunciante where nombre_empresa = %s")
     # args = (name,)
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
 
 
 def agregarAnuncio():
@@ -87,4 +95,4 @@ def agregarAnuncio():
 
     # sql = ("select id_anunciante from anunciante where nombre_empresa = %s")
     # args = (name,)
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)

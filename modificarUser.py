@@ -1,7 +1,11 @@
-import main, utilities, conexion
+import main
+import utilities
+import conexion
+
 
 def modificarUser():
-    while(True):
+    crea = True
+    while(crea == True):
 
         print("1. Modificar usuario\n2. dar de baja cuenta\n3. Regresar")
 
@@ -16,14 +20,15 @@ def modificarUser():
                 eliminar()
 
             elif(userDataInt == 3):
-                main.menu()
+                crea = False
 
             else:
                 print("El valor debe ser una de las opciones dadas")
 
         except:
             print("El valor debe ser una de las opciones dadas")
-    
+
+
 def modificar():
 
     print("Ingrese el correo del usuario para modificar")
@@ -33,8 +38,8 @@ def modificar():
     # while(True):
     #     sql = ("SELECT id_usuario from usuarios where email = %s;")
     #     args = (email,)
-    #     results = conexion.executeQuery(sql, args, True) 
-    
+    #     results = conexion.executeQuery(sql, args, True)
+
     #     id = str(results[0][0])
 
     #     if(len(results) == 0):
@@ -47,7 +52,8 @@ def modificar():
     userData = input()
     # sql = ("update usuarios set tipo= %s where id_usuario = %s")
     # args = (selected, id)
-    # databaseModule.executeQuery(sql, args) 
+    # databaseModule.executeQuery(sql, args)
+
 
 def eliminar():
 
@@ -58,8 +64,8 @@ def eliminar():
     # while(True):
     #     sql = ("SELECT id_usuario from usuarios where email = %s;")
     #     args = (email,)
-    #     results = databaseModule.executeQuery(sql, args, True) 
-    
+    #     results = databaseModule.executeQuery(sql, args, True)
+
     #     id = str(results[0][0])
 
     #     if(len(results) == 0):
@@ -69,4 +75,4 @@ def eliminar():
 
     # sql = ("update usuarios set tipo= 'Desactivado' where id_usuario = %s")
     # args = (id,)
-    # databaseModule.executeQuery(sql, args, False) 
+    # databaseModule.executeQuery(sql, args, False)

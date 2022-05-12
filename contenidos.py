@@ -1,7 +1,11 @@
-import main, utilities, conexion
+import main
+import utilities
+import conexion
+
 
 def contenidos():
-    while(True):
+    crea = True
+    while(crea == True):
 
         print("1. Agregar contenido\n2. Modificar contenido\n3. Eliminar contenido\n4. Mostrar contenido actual\n5. Regresar")
 
@@ -23,13 +27,14 @@ def contenidos():
                 mostrar()
 
             elif(userDataInt == 5):
-                main.menu()
+                crea = False
 
             else:
                 print("El valor debe ser una de las opciones dadas")
 
         except:
             print("El valor debe ser una de las opciones dadas")
+
 
 def agregar():
     print("AGREGAR CONTENIDOS:")
@@ -51,11 +56,11 @@ def agregar():
 
     # sql = ("insert into contenido (nombre, director, fecha_estreno, link, categoria) values (%s, %s, %s,%s,%s)")
     # args = (name, director, date, link, category)
-    # conexion.executeQuery(sql, args) 
+    # conexion.executeQuery(sql, args)
 
     # sql = ("SELECT id_contenido from contenido where nombre = %s;")
     # args = (name,)
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
     # id = results[0]
 
     terminar = True
@@ -65,7 +70,7 @@ def agregar():
         genero = input()
         # sql = ("INSERT INTO generos values (%s,%s);")
         # args = (categoria,id)
-        # conexion.executeQuery(sql, args) 
+        # conexion.executeQuery(sql, args)
 
         print("Quiere agrgar otro genero? \n1. Si \n2. No")
         seguir = input()
@@ -85,7 +90,7 @@ def agregar():
             terminar = True
             # sql = ("INSERT INTO premios values (%s,%s);")
             # args = (premio,id)
-            # databaseModule.executeQuery(sql, args) 
+            # databaseModule.executeQuery(sql, args)
         elif(seguir == '2'):
             terminar = False
         else:
@@ -100,7 +105,7 @@ def modificar():
 
     # sql = ("SELECT id_contenido from contenido where nombre = %s;")
     # args = (name,)
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
 
     print("Nombre nuevo del contenido")
     nombre = input()
@@ -119,11 +124,11 @@ def modificar():
 
     # sql = ("insert into contenido (nombre, director, fecha_estreno, link, categoria) values (%s, %s, %s,%s,%s)")
     # args = (name, director, date, link, category)
-    # conexion.executeQuery(sql, args) 
+    # conexion.executeQuery(sql, args)
 
     # sql = ("SELECT id_contenido from contenido where nombre = %s;")
     # args = (name,)
-    # results = conexion.executeQuery(sql, args, True) 
+    # results = conexion.executeQuery(sql, args, True)
     # id = results[0]
 
     terminar = True
@@ -133,7 +138,7 @@ def modificar():
         genero = input()
         # sql = ("INSERT INTO generos values (%s,%s);")
         # args = (categoria,id)
-        # conexion.executeQuery(sql, args) 
+        # conexion.executeQuery(sql, args)
 
         print("Quiere agrgar otro genero? \n1. Si \n2. No")
         seguir = input()
@@ -153,11 +158,12 @@ def modificar():
             terminar = True
             # sql = ("INSERT INTO premios values (%s,%s);")
             # args = (premio,id)
-            # databaseModule.executeQuery(sql, args) 
+            # databaseModule.executeQuery(sql, args)
         elif(seguir == '2'):
             terminar = False
         else:
             print("Debe seleccionar una de las posibles respuestas")
+
 
 def eliminar():
     print("Ingrese el nombre del contenido a eliminar")
@@ -166,7 +172,7 @@ def eliminar():
 
     # sql = ("SELECT id_contenido from contenido where nombre = %s;")
     # args = (name,)
-    # results = databaseModule.executeQuery(sql, args, True) 
+    # results = databaseModule.executeQuery(sql, args, True)
     # id = results[0]
 
     # if(len(results) == 0):
@@ -174,7 +180,7 @@ def eliminar():
     # else:
     #     sql = ("delete from contenido where id_contenido = %s;")
     #     args = (id,)
-    #     databaseModule.executeQuery(sql, args) 
+    #     databaseModule.executeQuery(sql, args)
 
     #     sql = ("delete from generos where id_contenido = %s;")
     #     args = (id,)
@@ -186,10 +192,11 @@ def eliminar():
 
     #     print("Contenido removido exitosamente")
 
+
 def mostrar():
     print("mostrar contenido")
     # sql = ("SELECT * from contenido;")
-    # results = databaseModule.executeQuery(sql, (), True) 
+    # results = databaseModule.executeQuery(sql, (), True)
 
     # content = []
     # for item in results:
@@ -202,4 +209,3 @@ def mostrar():
     #     content.append(contentTemp)
 
     # print(tabulate(content, headers=['Nombre', 'Director','Fecha Estreno','Link','Categoria']))
-
