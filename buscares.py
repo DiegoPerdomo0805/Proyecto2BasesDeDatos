@@ -1,10 +1,11 @@
 from scipy.fft import idst
-import conexion, main, player, utilities
+import conexion, player, utilities
 from datetime import date
-from utilities import menus, range
+from utilities import menus
 
-def busqueda():
-    while(True):
+def busquedas():
+    bandera = True
+    while(bandera):
 
          print("Busqueda por:")
          print("1. Nombre \n2. Director \n3. Actor \n4. Genero \n5. Categoria \n6. Estreno \n 7. Premios \n8. Regresar")
@@ -35,7 +36,7 @@ def busqueda():
                premios()
 
             elif(userDataInt == 8):
-               main.menu()
+               bandera = False
 
             else:
                print("El valor debe ser una de las opciones dadas")
@@ -56,7 +57,10 @@ def nombre():
     sql = ("SELECT t.id from titulos t where lower(t.nombre) like lower(%s);")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results0 = conexion.executeQuery(sql, args, True) 
-    resultado(results0, results)
+    if(len(results) == 0):
+        print("No hay títulos que cumplan el requisito")
+    else:
+        resultado(results0, results)
 
 def director():
     print("Ingrese el nombre del director")
@@ -71,7 +75,10 @@ def director():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     results0 = conexion.executeQuery(sql, args, True) 
 
-    resultado(results0, results)
+    if(len(results) == 0):
+        print("No hay títulos que cumplan el requisito")
+    else:
+        resultado(results0, results)
 
 def stelar():
     print("Ingrese el nombre de uno de los actores o actrices principales")
@@ -86,7 +93,10 @@ def stelar():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA
     results0 = conexion.executeQuery(sql, args, True)
 
-    resultado(results0, results)
+    if(len(results) == 0):
+        print("No hay títulos que cumplan el requisito")
+    else:
+        resultado(results0, results)
 
 def genero():
     print("Ingrese el genero del contenido")
@@ -100,7 +110,10 @@ def genero():
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     ids = conexion.executeQuery(sql, args, True)
     
-    resultado(ids, names)
+    if(len(names) == 0):
+        print("No hay títulos que cumplan el requisito")
+    else:
+        resultado(names, ids)
      
 def categoria():
     print("Ingrese si se desea ver películas o series")
@@ -111,7 +124,7 @@ def categoria():
         try:
             userData = input()
             op = int(userData)
-            if(range(op, 2)):
+            if(op in range(2)):
                 if op==1:
                     sql = ("SELECT t.nombre from titulos t where t.id in(SELECT p.id from peliculas p);")
                     args = ("")#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE

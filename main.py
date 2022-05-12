@@ -1,7 +1,7 @@
 from ctypes import util
 from sympy import true
 import conexion
-import busqueda
+import buscares
 import fav
 import utilities
 import extra
@@ -19,7 +19,8 @@ def main():
     utilities.setProfile('-')
     utilities.setSession("-")
     utilities.setType("-")
-
+    buscares.nombre()
+    
     while(True):
 
         print("1. Iniciar seccion \n2.Crear cuenta")
@@ -93,7 +94,7 @@ def SignIn():
     data = (email,)
     resultadoQ = conexion.executeQuery(query, data, True)
 
-    if(len(resultadoQ) >= 0):
+    if(len(resultadoQ) != 0):
         print("correo invalido")
         SignIn()
     else:
@@ -267,7 +268,7 @@ def menu():
                 userDataInt = int(userData)
                 if(userDataInt == 1):
                     print("Busqueda")
-                    busqueda.busqueda()
+                    buscares.busquedas()
 
                 elif(userDataInt == 2):
                     print("Ver favoritos")
