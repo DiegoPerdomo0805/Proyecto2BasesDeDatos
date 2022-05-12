@@ -1,3 +1,4 @@
+from ctypes import util
 import conexion
 import busqueda
 import main
@@ -5,131 +6,140 @@ import player
 import utilities
 
 
-def modificarUsuario():  # FALTA MOMO
+def modificarUsuario(): 
 
-    print("Ingrese la cuenta que desea remover")
-    cuenta = input()
-    sql = ("DELETE from perfiles where cuenta = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (cuenta,)
-    nombres = conexion.executeQuery(sql, args, True)
+    print("Ingrese el correo del usuario para modificar")
 
-    print("Ingrese el correo que desea remover")
-    cuenta = input()
-    sql = ("DELETE from cuenta where correo = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (utilities.getProfile(),)
-    nombres = conexion.executeQuery(sql, args, True)
+    email = input()
+    id = ""
+
+    while(True):
+        sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
+        args = (email,)
+        results = conexion.executeQuery(sql, args, True) 
+
+        id = utilities.cleanSingle2(results)
+
+        if(len(results) == 0):
+            print("Correo no encontrado\n")
+            print("Ingrese el correo del usuario para modificar")
+            email = input()
+        else:
+            break
+
+    mail = input("Ingrese su nuevo correo electrónico: ")
+    print("\nIngrese el nuevo tipo de cuenta del usuario.")
+    opciones = ["Básica", "Estándar", "Premium"]
+    contra = utilities.encryption(utilities.contra())
+    tier = utilities.menus(opciones)
+    sql = ("UPDATE cuenta set correo = %s, nivel_cuenta = %s, pssword = %s where cuenta_id = %s;")
+    args = (mail, tier, contra, id)
+    conexion.executeQuery(sql, args) 
 
 
 def quitarUsuario():
 
-    print("Ingrese la cuenta que desea remover")
-    cuenta = input()
-    sql = ("DELETE from perfiles where cuenta = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (cuenta,)
-    nombres = conexion.executeQuery(sql, args, True)
+    print("Ingrese el correo del usuario para eliminar")
 
-    print("Ingrese el correo que desea remover")
-    cuenta = input()
-    sql = ("DELETE from cuenta where correo = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (utilities.getProfile(),)
-    nombres = conexion.executeQuery(sql, args, True)
-
-
-def agrgarUsuario():
-
-    print("Ingrese el email de su usuario")
     email = input()
+    cuenta = ""
 
-    query = ("SELECT * from cuenta where correo=%s;")
-    data = (email,)
-    resultadoQ = conexion.executeQuery(query, data, True)
+    while(True):
+        sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
+        args = (email,)
+        results = conexion.executeQuery(sql, args, True) 
 
-    if(len(resultadoQ) >= 0):
-        print("correo invalido")
-    else:
-        opciones = ["Básica", "Estándar", "Premium"]
-        tier = utilities.menus(opciones)
-        psswrd = utilities.contra()
-        psswrd = utilities.encryption(psswrd)
-        sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%s, %s, %s);")
-        # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-        args = (tier, psswrd, email, )
-        conexion.executeQuery(sql, args, False)
-        query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
-        data = (email,)
-        resultadoQ = conexion.executeQuery(query, data, True)
-        query = ("SELECT cuenta_id from cuenta where correo=%s;")
-        data = (email,)
-        resultadoQ = conexion.executeQuery(query, data, True)
-        cuenta_id = utilities.getSession()
+        cuenta = utilities.cleanSingle2(results)
 
-        query = (
-            "SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
-        data = (cuenta_id,)
-        resultadoQ = conexion.executeQuery(query, data, True)
+        if(len(results) == 0):
+            print("Correo no encontrado\n")
+            print("Ingrese el correo del usuario para eliminar")
+            email = input()
+        else:
+            break
+    sql = ("UPDATE perfiles set active = false where cuenta = %s")
+    args = (cuenta,)
+    conexion.executeQuery(sql, args, False)
+
+    sql = ("DELETE from cuenta where cuenta_id = %s;")
+    args = (cuenta,)
+    conexion.executeQuery(sql, args, False)
+
 
 
 def modificarPerfil():  # FALTA MOMO
 
-    print("Ingrese la cuenta que desea remover")
-    cuenta = input()
-    sql = ("DELETE from perfiles where cuenta = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (cuenta,)
-    nombres = conexion.executeQuery(sql, args, True)
+    print("Ingrese la cuenta del perfil que desea modificar")
+    email = input()
+    id = ""
 
-    print("Ingrese el correo que desea remover")
-    cuenta = input()
-    sql = ("DELETE from cuenta where correo = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (utilities.getProfile(),)
-    nombres = conexion.executeQuery(sql, args, True)
+    while(True):
+        sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
+        args = (email,)
+        results = conexion.executeQuery(sql, args, True) 
 
+        id = utilities.cleanSingle2(results)
+
+        if(len(results) == 0):
+            print("Correo no encontrado\n")
+            print("Ingrese la cuenta del perfil que desea modificar")
+            email = input()
+        else:
+            break
+    print("Que perfil desea seleccionar?")
+    query = ("SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
+    data = (id, )
+    resultadoQ = conexion.executeQuery(query, data, True)
+    nombres = resultadoQ
+    query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
+    data = (id, )
+    resultadoQ = conexion.executeQuery(query, data, True)
+    ids = resultadoQ
+    perfil = utilities.cleanSingle2(utilities.menu3(ids, nombres))
+
+    nombre = input("ingrese el nombre nuevo del perfil: ")
+    active = (True if utilities.menus(["Activo", "No activo"]) == 1 else False)
+
+    query = ("UPDATE perfiles set perfil = %s, active = %s where cuenta = %s and perfil_id = %s;")
+    data = (nombre, active, id, perfil, )
+    conexion.executeQuery(query, data)
+
+    
 
 def quitarPerfil():  # FALTA MOMO
 
-    print("Ingrese la cuenta que desea remover")
-    cuenta = input()
-    sql = ("DELETE from perfiles where cuenta = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (cuenta,)
-    nombres = conexion.executeQuery(sql, args, True)
+    print("Ingrese la cuenta del perfil que desea modificar")
+    email = input()
+    id = ""
 
-    print("Ingrese el correo que desea remover")
-    cuenta = input()
-    sql = ("DELETE from cuenta where correo = %s;")
-    # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    args = (utilities.getProfile(),)
-    nombres = conexion.executeQuery(sql, args, True)
+    while(True):
+        sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
+        args = (email,)
+        results = conexion.executeQuery(sql, args, True) 
 
+        id = utilities.cleanSingle2(results)
 
-def agrgarPerfil():
-
-    print("Ingrese la cuenta a la que desea agregar un perfil")
-    cuenta = input()
-
-    unready = True
-    while(unready):
-        print("Ingrese el nombre para su perfil")
-        name = input()
-        perfil_id = utilities.createID(8)
-        if (name.__len__() <= 10) and (name.__len__() > 0):
-            query = (
-                "INSERT INTO perfiles (cuenta, perfil, active, perfil_id) VALUES (%s,%s,'True',%s);")
-            data = (cuenta, name, perfil_id, )
-            conexion.executeQuery(query, data, False)
-            query = (
-                "SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
-            data = (utilities.getSession(),)
-            resultadoQ = conexion.executeQuery(query, data, True)
-            perfiles = int(utilities.cleanSingle(resultadoQ))
-            unready = False
+        if(len(results) == 0):
+            print("Correo no encontrado\n")
+            print("Ingrese la cuenta del perfil que desea modificar")
+            email = input()
         else:
-            print("El nombre del perfil no debe pasar de los 10 caracteres.\n")
+            break
+    print("Que perfil desea seleccionar?")
+    query = ("SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
+    data = (id, )
+    resultadoQ = conexion.executeQuery(query, data, True)
+    nombres = resultadoQ
+    query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
+    data = (id, )
+    resultadoQ = conexion.executeQuery(query, data, True)
+    ids = resultadoQ
+    perfil = utilities.cleanSingle2(utilities.menu3(ids, nombres))
+    query = ("UPDATE perfiles set active = false where cuenta = %s and perfil_id = %s")
+    data = (id, perfil, )
+    conexion.executeQuery(query, data)
+
+
 
 
 def nuevoAnuncio():

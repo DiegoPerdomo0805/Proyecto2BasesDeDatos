@@ -154,13 +154,11 @@ def perfil():
         createProfile()
     else:
         print("Que perfil desea seleccionar?")
-        query = (
-            "SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
+        query = ("SELECT p.perfil from perfiles p where p.cuenta = %s  and p.active ;")
         data = (utilities.getSession(), )
         resultadoQ = conexion.executeQuery(query, data, True)
         nombres = resultadoQ
-        query = (
-            "SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
+        query = ("SELECT p.perfil_id from perfiles p where p.cuenta = %s  and p.active ;")
         data = (utilities.getSession(), )
         resultadoQ = conexion.executeQuery(query, data, True)
         ids = resultadoQ
