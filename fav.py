@@ -1,5 +1,5 @@
 import conexion
-import busqueda
+import buscares
 import main
 import player
 import utilities
