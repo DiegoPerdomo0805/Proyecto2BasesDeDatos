@@ -1,4 +1,5 @@
 from ctypes import util
+from tracemalloc import stop
 from sympy import true
 import conexion
 import buscares
@@ -22,12 +23,12 @@ def main():
     #adminOp.modificarUsuario()
 
     print("BIENVENIDO A YOUTUBE NARANJA 2.0")
-    acu = 0
-    while acu < 45:
-        print("\n iteracion " , acu, "\n")
-        generateSignIn(acu)
-        acu = acu + 1
-        
+    #acu = 0
+    #while acu < 45:
+    #    print("\n iteracion " , acu, "\n")
+    #    generateSignIn(acu)
+    #    acu = acu + 1
+    stop()
 
 
 
