@@ -1,13 +1,12 @@
 import conexion
 import buscares
-import main
 import player
 import utilities
 
 
 def favoritos():
     crea = True
-    while(crea == True):
+    while(crea):
 
         print("1. Ver lista \n2. Regresar")
 

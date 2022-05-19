@@ -3,6 +3,7 @@ from sympy import true
 import conexion
 import buscares
 import fav
+from player import player
 import utilities
 import extra
 import contenidos
@@ -14,13 +15,21 @@ from datetime import datetime
 
 
 def main():
+    # 65d443ea-Gimli
+    utilities.setProfile('65d443ea')
+    utilities.setSession('16')
+    utilities.setType(0)
+    #adminOp.modificarUsuario()
 
     print("BIENVENIDO A YOUTUBE NARANJA 2.0")
-    # 65d443ea-Gimli
-    utilities.setProfile('-')
-    utilities.setSession("-")
-    utilities.setType("-")
-    buscares.nombre()
+    acu = 0
+    while acu < 45:
+        print("\n iteracion " , acu, "\n")
+        generateSignIn(acu)
+        acu = acu + 1
+        
+
+
 
     while(True):
 
@@ -168,7 +177,7 @@ def perfil():
         ids = resultadoQ
         utilities.setProfile(utilities.cleanSingle2(
             utilities.menu3(ids, nombres)))
-    menu()
+    #menu()
 
 
 def menu():
@@ -319,6 +328,73 @@ def menu():
 
             except:
                 print("El valor debe ser una de las opciones dadas")
+
+
+
+
+
+
+#####area de experimentación
+def generateSignIn(counter):
+    email = utilities.createID(4)
+    email = str(counter)+"_"+email + "@gmail.com"
+
+    query = ("SELECT * from cuenta where correo=%s;")
+    data = (email,)
+    resultadoQ = conexion.executeQuery(query, data, True)
+
+    if(len(resultadoQ) != 0):
+        print("correo invalido")
+        SignIn()
+    else:
+        opciones = ["Básica", "Estándar", "Premium"]
+        tier = 1
+        psswrd = "contra" + str(counter)
+        psswrd = utilities.encryption(psswrd)
+        sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%s, %s, %s);")
+        # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+        args = (tier, psswrd, email, )
+        conexion.executeQuery(sql, args, False)
+        query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
+        data = (email,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        tier = utilities.tier(resultadoQ)
+        utilities.setType(tier)
+        query = ("SELECT cuenta_id from cuenta where correo=%s;")
+        data = (email,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        utilities.setSession(utilities.cleanSingle(resultadoQ))
+        cuenta_id = utilities.getSession()
+
+        query = ("SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+        data = (cuenta_id,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        perfiles = int(utilities.cleanSingle(resultadoQ))
+        utilities.setProfiles(perfiles)
+        perfil_2(counter)
+
+
+def perfil_2(counter):
+    unready = True
+    while(unready):
+        name = "persona" + str(counter)
+        if (name.__len__() <= 10) and (name.__len__() > 0):
+            perfil_id = utilities.createID(8)
+            account = utilities.getSession()
+            query = (
+                "INSERT INTO perfiles (cuenta, perfil, active, perfil_id) VALUES (%s,%s,'True',%s);")
+            data = (account, name, perfil_id, )
+            conexion.executeQuery(query, data, False)
+            query = (
+                "SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+            data = (utilities.getSession(),)
+            resultadoQ = conexion.executeQuery(query, data, True)
+            perfiles = int(utilities.cleanSingle(resultadoQ))
+            utilities.setProfiles(perfiles)
+            unready = False
+        else:
+            print("El nombre del perfil no debe pasar de los 10 caracteres.\n")
+
 
 
 main()

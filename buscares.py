@@ -206,4 +206,4 @@ def resultado(ids, names):
 
     opcion = utilities.menu3(ids, names)
     opcion = utilities.cleanSingle2(opcion)
-    player.videoPlayer(opcion)
+    player.player(opcion)

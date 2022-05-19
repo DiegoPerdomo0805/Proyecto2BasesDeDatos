@@ -16,16 +16,15 @@ def player(id):
 
         try:
             userDataInt = int(userData)
-            perfil = utilities.getProfiles
+            perfil = utilities.getProfile()
             if(userDataInt == 1):
                 videoPlayer(id)
 
             elif(userDataInt == 2):
 
-                query = (
-                    "insert into favoritos (perfil, id_titulo) values (%s, %s);")
+                query = ("insert into favoritos (perfil, id_titulo) values (%s, %s);")
                 data = (perfil, id,)
-                resultadoQ = conexion.executeQuery(query, data, True)
+                conexion.executeQuery(query, data, False)
 
                 break
 
@@ -53,7 +52,7 @@ def videoPlayer(id):
 
     while(True):
 
-        anuncio()
+        #anuncio()
 
         print("Termino el contenido? \n1. Yes \n2. No")
 

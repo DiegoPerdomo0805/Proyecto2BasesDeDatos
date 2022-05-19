@@ -11,14 +11,14 @@ def modificarUsuario():
     print("Ingrese el correo del usuario para modificar")
 
     email = input()
-    id = ""
+    cuenta = ""
 
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
         results = conexion.executeQuery(sql, args, True) 
 
-        id = utilities.cleanSingle2(results)
+        cuenta = utilities.cleanSingle2(results)
 
         if(len(results) == 0):
             print("Correo no encontrado\n")
@@ -71,14 +71,14 @@ def modificarPerfil():  # FALTA MOMO
 
     print("Ingrese la cuenta del perfil que desea modificar")
     email = input()
-    id = ""
+    cuenta = ""
 
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
         results = conexion.executeQuery(sql, args, True) 
 
-        id = utilities.cleanSingle2(results)
+        cuenta = utilities.cleanSingle2(results)
 
         if(len(results) == 0):
             print("Correo no encontrado\n")
@@ -110,14 +110,14 @@ def quitarPerfil():  # FALTA MOMO
 
     print("Ingrese la cuenta del perfil que desea modificar")
     email = input()
-    id = ""
+    cuenta = ""
 
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
         results = conexion.executeQuery(sql, args, True) 
 
-        id = utilities.cleanSingle2(results)
+        cuenta = utilities.cleanSingle2(results)
 
         if(len(results) == 0):
             print("Correo no encontrado\n")
