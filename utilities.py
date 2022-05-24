@@ -9,65 +9,82 @@ userType = ''
 adTime = 15
 userProfiles = 0
 
-#funcion de encriptado usando md5
+# funcion de encriptado usando md5
+
+
 def encryption(psswrd):
     cntr = psswrd
     c_e = md5()
     c_e.update(cntr.encode())
     return c_e.hexdigest()
 
+
 def passlen(psswrd):
-    if len(psswrd)>7 and len(psswrd)<50:
+    if len(psswrd) > 7 and len(psswrd) < 50:
         return True
     else:
         return False
 
-#SET GET DE LA INFO DE LA CUENTA
+# SET GET DE LA INFO DE LA CUENTA
+
+
 def setSession(user=""):
     global userName
     userName = user
 
+
 def getSession():
     return userName
 
-#SET GET DEL TIPO DE CUENTA
+# SET GET DEL TIPO DE CUENTA
+
+
 def setType(type):
     global userType
     userType = type
 
+
 def getType():
     return userType
 
-#SET GET DE LA INFO DEL PERFIL
-def setProfile(profile = ""):
+# SET GET DE LA INFO DEL PERFIL
+
+
+def setProfile(profile=""):
     global userProfile
     userProfile = profile
+
 
 def getProfile():
     return userProfile
 
-#Profiles siendo la cantidad de perfiles que una cuenta tiene
-#Sirve para tener en cuenta la cantiddad de perfiles que uno debería tener en función de su tipo de cuenta
+# Profiles siendo la cantidad de perfiles que una cuenta tiene
+# Sirve para tener en cuenta la cantiddad de perfiles que uno debería tener en función de su tipo de cuenta
+
+
 def setProfiles(profiles):
     global userProfiles
     userProfiles = profiles
 
+
 def getProfiles():
     return userProfiles
 
-#def range(x, l):
+# def range(x, l):
 #    if x > 0 and x<= l:
 #        return True
 #    else:
 #        return False
 
-      
-def setTime(time = 15):
+
+def setTime(time=15):
     global adTime
     adTime = time
 
+
 def getTime():
     return adTime
+
 
 def menus(opciones):
     """Crea menú con las opciones dadas por el usario
@@ -75,19 +92,19 @@ def menus(opciones):
     if len(opciones) > 1:
         length = len(opciones)
         for i in range(length):
-            print(i+1, ". ",opciones[i])
+            print(i+1, ". ", opciones[i])
     else:
         print("1. ", opciones[0])
-   
-    ciclo=True
+
+    ciclo = True
     while ciclo:
-        op=input('Ingrese una opcion: ')
+        op = input('Ingrese una opcion: ')
         try:
-            op=int(op)
-            if op <1 or op>len(opciones):
+            op = int(op)
+            if op < 1 or op > len(opciones):
                 print('Numero invalido')
             else:
-                ciclo=False
+                ciclo = False
                 return op
         except:
             print('Porfavor ingresar solo numeros')
@@ -99,22 +116,23 @@ def menus2(opciones):
     if len(opciones) > 1:
         length = len(opciones)
         for i in range(length):
-            print(i+1, ". ",opciones[i])
+            print(i+1, ". ", opciones[i])
     else:
         print("1. ", opciones[0])
-   
-    ciclo=True
-    while ciclo==True:
-        op=input('Ingrese una opcion: ')
+
+    ciclo = True
+    while ciclo == True:
+        op = input('Ingrese una opcion: ')
         try:
-            op=int(op)
-            if op <1 or op>len(opciones):
+            op = int(op)
+            if op < 1 or op > len(opciones):
                 print('Numero invalido')
             else:
-                ciclo=False
+                ciclo = False
                 return opciones[op-1]
         except:
             print('Porfavor ingresar solo numeros')
+
 
 def contra():
     flag = True
@@ -131,13 +149,14 @@ def contra():
                 return contra
                 flag = False
 
+
 def tier(nivel):
     nivel = str(nivel)
     swicth = {
-        "[(0,)]" : 0,
-        "[(1,)]" : 1,
-        "[(2,)]" : 2, 
-        "[(3,)]" : 3
+        "[(0,)]": 0,
+        "[(1,)]": 1,
+        "[(2,)]": 2,
+        "[(3,)]": 3
     }
     return swicth[nivel]
 
@@ -155,13 +174,14 @@ def cleanSingle(single):
         acu = acu + 1
     return single[begin:end]
 
+
 def cleanSingle2(single):
     single = str(single)
     begin = -1
     end = 0
     acu = 0
     for e in single:
-        if e == "'" and begin< end:
+        if e == "'" and begin < end:
             begin = acu + 1
         elif e == "'":
             end = acu
@@ -180,6 +200,7 @@ def createArray(data):
     for e in data:
         arreglo.append(e)
     return arreglo
+
 
 def menu3(ids, names):
     nombres = createArray(names)

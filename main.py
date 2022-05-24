@@ -20,7 +20,7 @@ def main():
     utilities.setProfile('-')
     utilities.setSession("-")
     utilities.setType("-")
-    buscares.nombre()
+    # buscares.nombre()
 
     while(True):
 
