@@ -127,6 +127,45 @@ def SignIn():
         perfil()
 
 
+def SignInAdmin():
+    print("Ingrese el email del nuevo admin")
+    email = input()
+
+    query = ("SELECT * from cuenta where correo=%s;")
+    data = (email,)
+    resultadoQ = conexion.executeQuery(query, data, True)
+
+    if(len(resultadoQ) != 0):
+        print("correo invalido")
+        SignIn()
+    else:
+        tier = 0
+        psswrd = utilities.contra()
+        psswrd = utilities.encryption(psswrd)
+        sql = ("INSERT INTO cuenta (nivel_cuenta, pssword , correo) VALUES (%s, %s, %s);")
+        # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+        args = (tier, psswrd, email, )
+        conexion.executeQuery(sql, args, False)
+        query = ("SELECT nivel_cuenta from cuenta where correo=%s;")
+        data = (email,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        tier = utilities.tier(resultadoQ)
+        utilities.setType(tier)
+        query = ("SELECT cuenta_id from cuenta where correo=%s;")
+        data = (email,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        utilities.setSession(utilities.cleanSingle(resultadoQ))
+        cuenta_id = utilities.getSession()
+
+        query = (
+            "SELECT count(perfil_id) from perfiles p where p.active and p.cuenta =%s;")
+        data = (cuenta_id,)
+        resultadoQ = conexion.executeQuery(query, data, True)
+        perfiles = int(utilities.cleanSingle(resultadoQ))
+        utilities.setProfiles(perfiles)
+        perfil()
+
+
 def createProfile():
     unready = True
     while(unready):
@@ -178,7 +217,7 @@ def menu():
         while(True):
 
             print("Eliga una opcion")
-            print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Cerrar sesión")
+            print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Agregar nuevo administrador \n6. Simulacion \n6. Cerrar sesión")
 
             userData = input()
 
@@ -250,6 +289,10 @@ def menu():
                             print("El valor debe ser una de las opciones dadas")
 
                 elif(userDataInt == 5):
+
+                    SignInAdmin()
+
+                elif(userDataInt == 6):
                     main()
 
                 else:

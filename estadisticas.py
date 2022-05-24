@@ -7,7 +7,7 @@ def estadisticas():
     crea = True
     while(crea == True):
 
-        print("1. El top 10 de géneros de contenido más visto, y los minutos consumidos \n2. Cantidad de reproducciones por cada categoría, por tipo de cuenta \n3. El top 10 de los directores y actores principales de las películas que los perfiles estándar y avanzados han visto \n4. La cantidad de cuentas avanzadas que se han creado en los últimos 6 meses \n5. Para una fecha específica, ¿cuál es la hora pico donde el servicio es más utilizado? \n6. Regresar")
+        print("1. El top 10 de géneros de contenido más visto, y los minutos consumidos \n2. Cantidad de reproducciones por cada categoría, por tipo de cuenta \n3. El top 10 de los directores y actores principales de las películas que los perfiles estándar y avanzados han visto \n4. La cantidad de cuentas avanzadas que se han creado en los últimos 6 meses \n5. Para una fecha específica, ¿cuál es la hora pico donde el servicio es más utilizado? \n6. El top 5 de contenido visto en cada hora, de 9:00 a.m a 1:00 a.m para un mes dado.\n7. El top 10 de los términos que los usuarios buscan (no necesariamente debe estar el contenido, actores, etc., en la plataforma), esto le sirve a los administradores para saber qué contenido se debe ir añadiendo al servicio. Ej: las últimas películas de Marvel.\n8. El top 5 de los administradores que más modificaciones realizan en las cuentas de usuario para un rango de fechas dado\n9. El top 20 de películas que comenzaron a verse pero que llevan más de 20 días sin finalizarse, para un rango de fechas dado.\n10. Regresar")
 
         userData = input()
 
@@ -27,6 +27,18 @@ def estadisticas():
 
             elif(userDataInt == 5):
                 opcion5()
+
+            elif(userDataInt == 6):
+                opcion6()
+
+            elif(userDataInt == 2):
+                opcion7()
+
+            elif(userDataInt == 3):
+                opcion8()
+
+            elif(userDataInt == 4):
+                opcion9()
 
             elif(userDataInt == 6):
                 crea = False
@@ -91,6 +103,46 @@ def opcion4():
 
 
 def opcion5():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True)
+
+    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+
+def opcion6():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True)
+
+    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+
+def opcion7():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True)
+
+    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+
+def opcion8():
+    print("jaja")
+
+    # sql = ("SELECT nombre from nombre where nombre = %s;")
+    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    # results = conexion.executeQuery(sql, args, True)
+
+    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+
+
+def opcion9():
     print("jaja")
 
     # sql = ("SELECT nombre from nombre where nombre = %s;")
