@@ -6,7 +6,7 @@ import player
 import utilities
 
 
-def modificarUsuario(): 
+def modificarUsuario():
 
     print("Ingrese el correo del usuario para modificar")
 
@@ -16,7 +16,7 @@ def modificarUsuario():
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
-        results = conexion.executeQuery(sql, args, True) 
+        results = conexion.executeQuery(sql, args, True)
 
         id = utilities.cleanSingle2(results)
 
@@ -34,7 +34,7 @@ def modificarUsuario():
     tier = utilities.menus(opciones)
     sql = ("UPDATE cuenta set correo = %s, nivel_cuenta = %s, pssword = %s where cuenta_id = %s;")
     args = (mail, tier, contra, id)
-    conexion.executeQuery(sql, args) 
+    conexion.executeQuery(sql, args)
 
 
 def quitarUsuario():
@@ -47,7 +47,7 @@ def quitarUsuario():
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
-        results = conexion.executeQuery(sql, args, True) 
+        results = conexion.executeQuery(sql, args, True)
 
         cuenta = utilities.cleanSingle2(results)
 
@@ -66,7 +66,6 @@ def quitarUsuario():
     conexion.executeQuery(sql, args, False)
 
 
-
 def modificarPerfil():  # FALTA MOMO
 
     print("Ingrese la cuenta del perfil que desea modificar")
@@ -76,7 +75,7 @@ def modificarPerfil():  # FALTA MOMO
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
-        results = conexion.executeQuery(sql, args, True) 
+        results = conexion.executeQuery(sql, args, True)
 
         id = utilities.cleanSingle2(results)
 
@@ -100,11 +99,11 @@ def modificarPerfil():  # FALTA MOMO
     nombre = input("ingrese el nombre nuevo del perfil: ")
     active = (True if utilities.menus(["Activo", "No activo"]) == 1 else False)
 
-    query = ("UPDATE perfiles set perfil = %s, active = %s where cuenta = %s and perfil_id = %s;")
+    query = (
+        "UPDATE perfiles set perfil = %s, active = %s where cuenta = %s and perfil_id = %s;")
     data = (nombre, active, id, perfil, )
     conexion.executeQuery(query, data)
 
-    
 
 def quitarPerfil():  # FALTA MOMO
 
@@ -115,7 +114,7 @@ def quitarPerfil():  # FALTA MOMO
     while(True):
         sql = ("SELECT c.cuenta_id from cuenta c where c.correo like %s;")
         args = (email,)
-        results = conexion.executeQuery(sql, args, True) 
+        results = conexion.executeQuery(sql, args, True)
 
         id = utilities.cleanSingle2(results)
 
@@ -138,8 +137,6 @@ def quitarPerfil():  # FALTA MOMO
     query = ("UPDATE perfiles set active = false where cuenta = %s and perfil_id = %s")
     data = (id, perfil, )
     conexion.executeQuery(query, data)
-
-
 
 
 def nuevoAnuncio():
@@ -178,3 +175,22 @@ def quitar():
     sql = ("DELETE from favoritos where perfil = %s and id_titulo = %s;")
     args = (utilities.getProfile(), choice,)  # RECORDA SIEMPRE PO
     ids = conexion.executeQuery(sql, args, True)
+
+
+def simulacion():
+    print("\Escoja un contenido para simular\n")
+    contenido = input()
+
+    print("\Ingrese la cantidad de veces que desea simuar\n")
+    while True:
+        contenido = input()
+        try:
+
+            contenido2 = int(contenido)
+            if(contenido2 >= 1):
+                print("entro")
+            else:
+                print("el valor debe ser mayor a 0")
+
+        except:
+            print("el valor ingresado debe ser un numero.")
