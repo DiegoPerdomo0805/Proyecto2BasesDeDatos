@@ -10,7 +10,9 @@ import estadisticas
 import uuid
 import adminOp
 import modificarAnuncio
+import estadisticas
 from datetime import datetime
+import peliculas
 
 
 def main():
@@ -217,7 +219,7 @@ def menu():
         while(True):
 
             print("Eliga una opcion")
-            print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Agregar nuevo administrador \n6. Simulacion \n6. Cerrar sesión")
+            print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Agregar nuevo administrador \n6. Simulacion \n7. Bitacora \n8. Ampliacion reporteria \n9. Inteligencia de negocios \n10. Cerrar sesión")
 
             userData = input()
 
@@ -262,7 +264,7 @@ def menu():
 
                     print("Eliga una opcion")
                     print(
-                        "1. modificar anuncio \n2. modificar anunciante \n3. agregar anunciante \n3. Regresar")
+                        "1. modificar anuncio \n2. modificar anunciante \n3. agregar anunciante \n4. Regresar")
 
                     while(True):
 
@@ -293,6 +295,22 @@ def menu():
                     SignInAdmin()
 
                 elif(userDataInt == 6):
+
+                    peliculas.generarVisualizaciones()
+
+                elif(userDataInt == 7):
+
+                    estadisticas.estadisticas()
+
+                elif(userDataInt == 8):
+
+                    SignInAdmin()
+
+                elif(userDataInt == 9):
+
+                    SignInAdmin()
+
+                elif(userDataInt == 10):
                     main()
 
                 else:
