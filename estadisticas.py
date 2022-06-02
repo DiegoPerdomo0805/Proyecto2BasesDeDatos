@@ -1,6 +1,8 @@
+from matplotlib.style import use
 import main
 import utilities
 import conexion
+from datetime import date
 
 
 def estadisticas():
@@ -31,16 +33,16 @@ def estadisticas():
             elif(userDataInt == 6):
                 opcion6()
 
-            elif(userDataInt == 2):
+            elif(userDataInt == 7):
                 opcion7()
 
-            elif(userDataInt == 3):
+            elif(userDataInt == 8):
                 opcion8()
 
-            elif(userDataInt == 4):
+            elif(userDataInt == 9):
                 opcion9()
 
-            elif(userDataInt == 6):
+            elif(userDataInt == 10):
                 crea = False
 
             else:
@@ -113,23 +115,36 @@ def opcion5():
 
 
 def opcion6():
-    print("jaja")
+    crea = True
+    while(crea == True):
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True)
+        print("ingrese un mes en numeros")
+        userData = input()
 
-    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+        try:
+            userDataInt = int(userData)
+
+            if(userData <= 12 or userData >= 1):
+                crea = False
+
+            else:
+                print("El valor debe ser una de las opciones dadas")
+
+        except:
+            print("El valor debe ser una de las opciones dadas")
+
+    sql = ("SELECT (select t.nombre from titulos t where t.id like wa.id_titulo) ,  sum(wa.times_watched) as reproducciones from watch_again wa where wa.hour_watched not between '01:00:01' and '08:59:59' and extract(month from wa.date_watched) = '%s' group by wa.id_titulo order by reproducciones desc")
+    args = (userData,)  # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    results = conexion.executeQuery(sql, args, True)
+    print(results)
 
 
 def opcion7():
     print("jaja")
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True)
-
-    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+    sql = ("select busqueda, count(*) from historial h group by h.busqueda")
+    results = conexion.executeQuery(sql, True)
+    print(results)
 
 
 def opcion8():
@@ -145,8 +160,9 @@ def opcion8():
 def opcion9():
     print("jaja")
 
-    # sql = ("SELECT nombre from nombre where nombre = %s;")
-    # args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
-    # results = conexion.executeQuery(sql, args, True)
+    today = date.today()
 
-    # MOMO: Tambien como antes, solo imprimi y aqui lo que toque hacer
+    sql = ("select (select t.nombre from titulos t where t.id like v.id_titulo) as nombre, v.fecha from viendo v where extract(epoch from ('%d'::timestamp - fecha::timestamp))/86400 > 20 limit 20")
+    args = (today,)  # RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
+    results = conexion.executeQuery(sql, args, True)
+    print(results)
