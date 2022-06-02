@@ -13,6 +13,11 @@ import modificarAnuncio
 import estadisticas
 from datetime import datetime
 import peliculas
+from datetime import date
+
+today = date.today()
+today = str(today)
+
 
 
 def main():
@@ -222,6 +227,7 @@ def menu():
     if(utilities.getType() == 0):
 
         while(True):
+            #Acciones de administrador
 
             print("Eliga una opcion")
             print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Agregar nuevo administrador \n6. Simulacion \n7. Bitacora \n8. Ampliacion reporteria \n9. Inteligencia de negocios \n10. Cerrar sesión")
@@ -242,19 +248,22 @@ def menu():
                         "1. Quitar usuario \n2. Agregar usuario \n3. Modificar usuario \n3. Regresar")
 
                     while(True):
-
+                        adminCorreo = utilities.getSession()
                         userDataInt = input()
 
                         try:
                             userDataInt = int(userData)
                             if(userDataInt == 1):
                                 adminOp.quitarUsuario()
+                                adminOp.modificaciones(adminCorreo, today)
 
                             elif(userDataInt == 2):
                                 adminOp.agrgarUsuario()
+                                adminOp.modificaciones(adminCorreo, today)
 
                             elif(userDataInt == 3):
                                 adminOp.modificarUsuario()
+                                adminOp.modificaciones(adminCorreo, today)
 
                             elif(userDataInt == 4):
                                 menu()
