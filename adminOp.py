@@ -68,7 +68,7 @@ def quitarUsuario():
 
 def modificarPerfil():  # FALTA MOMO
 
-    print("Ingrese la cuenta del perfil que desea modificar")
+    print("Ingrese el correo de la cuenta del perfil que desea modificar")
     email = input()
     id = ""
 
@@ -194,3 +194,9 @@ def simulacion():
 
         except:
             print("el valor ingresado debe ser un numero.")
+
+
+def modificaciones(cuenta, fecha):
+    sql = ("INSERT into admins (email, fecha) values(%s, %s);")
+    args = (cuenta, fecha, )
+    conexion.executeQuery(sql, args, False)
