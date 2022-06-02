@@ -23,6 +23,11 @@ def main():
     utilities.setSession("-")
     utilities.setType("-")
     # buscares.nombre()
+    estadisticas.opcion6()
+    estadisticas.opcion7()
+    estadisticas.opcion8()
+    estadisticas.opcion9()
+
 
     while(True):
 
