@@ -10,7 +10,7 @@ def busquedas():
          print("Busqueda por:")
          print("1. Nombre \n2. Director \n3. Actor \n4. Genero \n5. Categoria \n6. Estreno \n 7. Premios \n8. Regresar")
 
-         userData = input()
+         userData  =  input()
 
          try:
             userDataInt = int(userData)
@@ -47,7 +47,8 @@ def busquedas():
 def nombre():
     print("Ingrese el nombre del contenido")
 
-    userData = input()
+    userData  =  input()
+    registerSearch(userData)
     userData = "%" + userData + "%"
 
 
@@ -65,7 +66,8 @@ def nombre():
 def director():
     print("Ingrese el nombre del director")
 
-    userData = input()
+    userData  =  input()
+    registerSearch(userData)
     userData = "%" + userData + "%"
 
     sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_director td inner join director d on td.director = d.id_director where lower(d.nombre) like  lower(%s));")
@@ -83,7 +85,8 @@ def director():
 def stelar():
     print("Ingrese el nombre de uno de los actores o actrices principales")
 
-    userData = input()
+    userData  =  input()
+    registerSearch(userData)
     userData = "%" + userData + "%"
 
     sql = ("SELECT t.nombre from titulos t where t.id in( SELECT ta.id from titulo_actores ta inner join actor a on ta.actor = a.id_actor where lower(a.nombre) like  lower(%s));")
@@ -101,7 +104,8 @@ def stelar():
 def genero():
     print("Ingrese el genero del contenido")
 
-    userData = input()
+    userData  =  input()
+    registerSearch(userData)
 
     sql = ("SELECT t.nombre from titulos t where t.id in(SELECT td.id from titulo_details td inner join generos g on td.genero = g.id_genero where lower(g.nombre) like  lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
@@ -122,7 +126,8 @@ def categoria():
     flag = True
     while(flag):
         try:
-            userData = input()
+            userData  =  input()
+            registerSearch(userData)
             op = int(userData)
             if(op in range(2)):
                 if op==1:
@@ -191,8 +196,9 @@ def estreno():
 def premios():
     print("Ingrese el nombre del contenido")
 
-    userData = input()
-
+    userData  =  input()
+    registerSearch(userData)
+    
     sql = ("SELECT t.nombre from titulos t where t.id in( SELECT p.id_titulo from premiados p inner join premios p2 on p.id_premio = p2.id where lower(p2.nombre) like lower(%s));")
     args = (userData,)#RECORDA SIEMPRE PONER LA COMA PARA QUE NO TRUENE
     names = conexion.executeQuery(sql, args, True) 
@@ -207,3 +213,9 @@ def resultado(ids, names):
     opcion = utilities.menu3(ids, names)
     opcion = utilities.cleanSingle2(opcion)
     player.videoPlayer(opcion)
+
+
+def registerSearch(search):
+    sql = ("INSERT into historial (busqueda) values (%s);")
+    args = (search,)
+    conexion.executeQuery(sql, args)

@@ -151,7 +151,7 @@ def opcion6():
 
 
 def opcion7():
-    sql = ("SELECT busqueda, count(*) from historial h group by h.busqueda")
+    sql = ("SELECT lower(busqueda) as termino , count(*) as times from historial h group by lower(busqueda) limit 10 ")
     results = conexion.executeQuery(sql, True)
     if results is None:
         print("Vacio")
