@@ -19,7 +19,6 @@ today = date.today()
 today = str(today)
 
 
-
 def main():
 
     print("BIENVENIDO A YOUTUBE NARANJA 2.0")
@@ -28,7 +27,6 @@ def main():
     utilities.setSession("-")
     utilities.setType("-")
     # buscares.nombre()
-
 
     while(True):
 
@@ -223,7 +221,7 @@ def menu():
     if(utilities.getType() == 0):
 
         while(True):
-            #Acciones de administrador
+            # Acciones de administrador
 
             print("Eliga una opcion")
             print("1. Estadísticas \n2. Modificacion de contenidos \n3. Modificar usuario \n4. Modificar anunciantes \n5. Agregar nuevo administrador \n6. Simulacion \n7. Bitacora \n8. Ampliacion reporteria \n9. Inteligencia de negocios \n10. Cerrar sesión")
