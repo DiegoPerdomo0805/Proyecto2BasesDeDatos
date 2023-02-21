@@ -2,12 +2,58 @@ from hashlib import md5
 import time
 from unicodedata import name
 import uuid
+import time
+import random
 
 userName = ''
 userProfile = ''
 userType = ''
 adTime = 15
 userProfiles = 0
+
+# Funciones para manejo de tiempo
+
+
+def str_time_prop(start, end, time_format, prop):
+    """Get a time at a proportion of a range of two formatted times.
+
+    start and end should be strings specifying times formatted in the
+    given format (strftime-style), giving an interval [start, end].
+    prop specifies how a proportion of the interval to be taken after
+    start.  The returned time will be in the specified format.
+    """
+
+    stime = time.mktime(time.strptime(start, time_format))
+    etime = time.mktime(time.strptime(end, time_format))
+
+    ptime = stime + prop * (etime - stime)
+
+    return time.strftime(time_format, time.localtime(ptime))
+
+
+def random_date(start, end, prop):
+    return str_time_prop(start, end, '%m/%d/%Y %I:%M %p', prop)
+
+
+def clean_date(single):
+    single = str(single)
+    begin = -1
+    end = 0
+    acu = 0
+    for e in single:
+        if e == "2" and begin < end:
+            temp = acu
+            temp2 = single[temp:temp+4]
+            if temp2 == "2022":
+                begin = acu + 1
+        else:
+            acu = acu + 1
+    begin = begin + 3 + 1
+    end = len(single)
+
+    return single[begin:end]
+
+
 
 # funcion de encriptado usando md5
 

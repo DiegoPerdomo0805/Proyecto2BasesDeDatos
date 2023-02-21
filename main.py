@@ -27,6 +27,7 @@ def main():
     utilities.setSession("-")
     utilities.setType("-")
     # buscares.nombre()
+    #adminOp.simulacion()
 
     while(True):
 
